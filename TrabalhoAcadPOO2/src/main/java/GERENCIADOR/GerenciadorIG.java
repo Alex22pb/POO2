@@ -26,11 +26,16 @@ public class GerenciadorIG {
     private TelaCadastroFicha telaFicha = null;
     private TelaPesquisar telaPesquisa = null;
     private TelaCadastroUsuario telaUsuario = null;
+    private GerenciadorDominio gerDom;
 
     public GerenciadorIG() {
-    
+        gerDom = new GerenciadorDominio();
     }
-    
+
+    public GerenciadorDominio getGerDom() {
+        return gerDom;
+    }
+       
     private JDialog abrirJanelaDlg(java.awt.Frame parent, JDialog dlg, Class classe){
         if(dlg == null){
             try{

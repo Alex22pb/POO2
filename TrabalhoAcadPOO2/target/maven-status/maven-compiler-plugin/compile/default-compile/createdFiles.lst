@@ -3,6 +3,7 @@ GERENCIADOR\GerenciadorIG.class
 Viewer\TelaPesquisar$3.class
 DAO\enderecoDAO.class
 Viewer\TelaCadastroFicha$4.class
+DAO\AlunoDAO.class
 Viewer\TelaCadastroAluno$2.class
 Viewer\TelaLogin$3.class
 Viewer\TelaCadastroUsuario$2.class
@@ -15,11 +16,10 @@ DAO\FichaAlunoDAO.class
 DOMAIN\Usuario.class
 Viewer\TelaLogin$2.class
 Viewer\TelaPesquisar.class
+DAO\PersonalDAO.class
 Viewer\TelaCadastroUsuario.class
-DAO\ClienteDAO.class
 Viewer\TelaCadastroAluno$1.class
 Viewer\TelaCadastroUsuario$1.class
-DAO\UsuarioDAO.class
 Viewer\TelaCadastroFicha$2.class
 Viewer\TelaCadastroAluno$4.class
 Viewer\TelaPrincipal$3.class

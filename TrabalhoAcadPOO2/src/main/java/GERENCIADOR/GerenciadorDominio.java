@@ -4,7 +4,13 @@
  */
 package GERENCIADOR;
 
+import DAO.AlunoDAO;
+import DAO.FichaAlunoDAO;
+import DAO.PersonalDAO;
+import DAO.enderecoDAO;
 import DOMAIN.FichaAluno;
+import DOMAIN.endereco;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +24,18 @@ public class GerenciadorDominio {
 //    A ideia é que na hora da ficha ser criada, ao selecionar o objetivo do aluno ela ja set oq o aluno tem que fazer,
 //    quais exercicios, quantidade de repetições, tempo de descanso, porém não sei dizer se essa vai ser a melhor maneira para se fazer isso.
 //     Pois se modificar algo, o objetivo do aluno poderá não ser alcançado. Também não sei se essa classe foi criada/sendo usada da maneira correta.
+    
+    private AlunoDAO aluno_DAO;
+    private FichaAlunoDAO fichaAluno_DAO;
+    private enderecoDAO endereco_DAO;
+    private PersonalDAO personal_DAO;
+  
+    public GerenciadorDominio() {
+        aluno_DAO = new AlunoDAO();
+        fichaAluno_DAO = new FichaAlunoDAO();
+        endereco_DAO = new enderecoDAO();
+        personal_DAO = new PersonalDAO();
+    }
     
     public static FichaAluno fichaPredefinida(String tipo) {
         List<String> exerc = new ArrayList<>(); // Inicializa a lista corretamente
