@@ -66,9 +66,5 @@ public class endereco implements Serializable{
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-
-   
-    
-    
-    
+ 
 }

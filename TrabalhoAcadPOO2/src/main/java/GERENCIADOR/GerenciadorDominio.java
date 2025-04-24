@@ -86,6 +86,5 @@ public class GerenciadorDominio {
 
         return new FichaAluno(tipo, exerc, minRep, maxRep, temDesc, serieExer, obs);
     }
-    
-    
+   
 }
