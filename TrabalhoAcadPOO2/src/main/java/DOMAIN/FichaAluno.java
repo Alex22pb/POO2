@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class FichaAluno {
     private String tipoFicha;
-    private List<String> exercicios;
+    private List<Exercicios> exercicios;
     private int minRep;
     private int maxRep;
     private int tempDescanso;
     private int serieExerc;
     private String observacoes;
 
-    public FichaAluno(String tipoFicha, List<String> exercicios, int minRep, int maxRep, int tempDescanso, int serieExerc, String observacoes) {
+    public FichaAluno(String tipoFicha, List<Exercicios> exercicios, int minRep, int maxRep, int tempDescanso, int serieExerc, String observacoes) {
         this.tipoFicha = tipoFicha;
         this.exercicios = exercicios;
         this.minRep = minRep;
@@ -44,11 +44,11 @@ public class FichaAluno {
         this.tipoFicha = tipoFicha;
     }
 
-    public List<String> getExercicios() {
+    public List<Exercicios> getExercicios() {
         return exercicios;
     }
 
-    public void setExercicios(List<String> exercicios) {
+    public void setExercicios(List<Exercicios> exercicios) {
         this.exercicios = exercicios;
     }
 

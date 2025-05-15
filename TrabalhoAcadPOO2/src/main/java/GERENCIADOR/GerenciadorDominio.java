@@ -8,6 +8,7 @@ import DAO.AlunoDAO;
 import DAO.FichaAlunoDAO;
 import DAO.PersonalDAO;
 import DAO.enderecoDAO;
+import DOMAIN.Exercicios;
 import DOMAIN.FichaAluno;
 import DOMAIN.endereco;
 import java.sql.SQLException;
@@ -38,18 +39,18 @@ public class GerenciadorDominio {
     }
     
     public static FichaAluno fichaPredefinida(String tipo) {
-        List<String> exerc = new ArrayList<>(); // Inicializa a lista corretamente
+        List<Exercicios> exerc = new ArrayList<>(); // Inicializa a lista corretamente
         int minRep = 0, maxRep = 0, temDesc = 0, serieExer = 0;
         String obs = null;
 
         switch (tipo) {
             case "Emagrecimento":
-                exerc.add("Agachamento Livre");
-                exerc.add("Sulpino Reto com Halteres");
-                exerc.add("Remada Baixa");
-                exerc.add("Afundo Alternado");
-                exerc.add("Desenvolvimento Ombro");
-                exerc.add("Prancha Abdominal");
+                exerc.add(new Exercicios("Agachamento Livre"));
+                exerc.add(new Exercicios("Sulpino Reto com Halteres"));
+                exerc.add(new Exercicios("Remada Baixa"));
+                exerc.add(new Exercicios("Afundo Alternado"));
+                exerc.add(new Exercicios("Desenvolvimento Ombro"));
+                exerc.add(new Exercicios("Prancha Abdominal"));
                 minRep = 12;
                 maxRep = 15;
                 temDesc = 30;
@@ -57,12 +58,12 @@ public class GerenciadorDominio {
                 obs = "Pode intercalar com exercícios aeróbicos (40s de prancha).";
                 break;
             case "Hipertrofia":
-                exerc.add("Agachamento Livre");
-                exerc.add("Leg Press 45°");
-                exerc.add("Sulpino Reto Barra");
-                exerc.add("Crucifixo Máquina");
-                exerc.add("Rosca Direta");
-                exerc.add("Tríceps Corda");
+                exerc.add(new Exercicios("Agachamento Livre"));
+                exerc.add(new Exercicios("Leg Press 45°"));
+                exerc.add(new Exercicios("Sulpino Reto Barra"));
+                exerc.add(new Exercicios("Crucifixo Máquina"));
+                exerc.add(new Exercicios("Rosca Direta"));
+                exerc.add(new Exercicios("Tríceps Corda"));
                 minRep = 8;
                 maxRep = 12;
                 temDesc = 60;
@@ -70,12 +71,12 @@ public class GerenciadorDominio {
                 obs = "Aumentar a carga gradativamente e manter boa execução dos movimentos.";
                 break;
             case "Força/Potência":
-                exerc.add("Levantamento Terra");
-                exerc.add("Agachamento Livre");
-                exerc.add("Sulpino Reto Barra");
-                exerc.add("Desenvolvimento Ombro");
-                exerc.add("Barra Fixa");
-                exerc.add("Prancha Abdominal");
+                exerc.add(new Exercicios("Levantamento Terra"));
+                exerc.add(new Exercicios("Agachamento Livre"));
+                exerc.add(new Exercicios("Sulpino Reto Barra"));
+                exerc.add(new Exercicios("Desenvolvimento Ombro"));
+                exerc.add(new Exercicios("Barra Fixa"));
+                exerc.add(new Exercicios("Prancha Abdominal"));
                 minRep = 4;
                 maxRep = 6;
                 temDesc = 120;

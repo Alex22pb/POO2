@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+import DOMAIN.Exercicios;
 import DOMAIN.FichaAluno;
 import GERENCIADOR.GerenciadorIG;
 import GERENCIADOR.GerenciadorDominio;
@@ -19,7 +20,7 @@ import javax.swing.JCheckBox;
 public class TelaCadastroFicha extends javax.swing.JDialog {
 
     private GerenciadorIG genIG;
-    private Map<String, JCheckBox> checkBoxListaExercicios = new HashMap<>();;
+    private Map<Exercicios, JCheckBox> checkBoxListaExercicios = new HashMap<>();;
     
     public TelaCadastroFicha(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
@@ -27,19 +28,19 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         initComponents();
         this.setResizable(false);
         
-        checkBoxListaExercicios.put("Agachamento Livre", agachamento);
-        checkBoxListaExercicios.put("Sulpino Reto com Halteres", sulpinoHalter);
-        checkBoxListaExercicios.put("Remada Baixa", remadabaixa);
-        checkBoxListaExercicios.put("Afundo Alternado", afundo);
-        checkBoxListaExercicios.put("Desenvolvimento Ombro", desenvolvimento);
-        checkBoxListaExercicios.put("Prancha Abdominal", prancha);
-        checkBoxListaExercicios.put("Leg Press 45°", legPress);
-        checkBoxListaExercicios.put("Sulpino Reto Barra", sulpinoReto);
-        checkBoxListaExercicios.put("Crucifixo Máquina", crucifixo);
-        checkBoxListaExercicios.put("Rosca Direta", roscaDireta);
-        checkBoxListaExercicios.put("Tríceps Corda", tricepsCorda);
-        checkBoxListaExercicios.put("Levantamento Terra", terraLevantar);
-        checkBoxListaExercicios.put("Barra Fixa", barraFixa);
+        checkBoxListaExercicios.put(new Exercicios("Agachamento Livre"), agachamento);
+        checkBoxListaExercicios.put(new Exercicios("Sulpino Reto com Halteres"), sulpinoHalter);
+        checkBoxListaExercicios.put(new Exercicios("Remada Baixa"), remadabaixa);
+        checkBoxListaExercicios.put(new Exercicios("Afundo Alternado"), afundo);
+        checkBoxListaExercicios.put(new Exercicios("Desenvolvimento Ombro"), desenvolvimento);
+        checkBoxListaExercicios.put(new Exercicios("Prancha Abdominal"), prancha);
+        checkBoxListaExercicios.put(new Exercicios("Leg Press 45°"), legPress);
+        checkBoxListaExercicios.put(new Exercicios("Sulpino Reto Barra"), sulpinoReto);
+        checkBoxListaExercicios.put(new Exercicios("Crucifixo Máquina"), crucifixo);
+        checkBoxListaExercicios.put(new Exercicios("Rosca Direta"), roscaDireta);
+        checkBoxListaExercicios.put(new Exercicios("Tríceps Corda"), tricepsCorda);
+        checkBoxListaExercicios.put(new Exercicios("Levantamento Terra"), terraLevantar);
+        checkBoxListaExercicios.put(new Exercicios("Barra Fixa"), barraFixa);
     }
 
     /**
@@ -463,14 +464,14 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
  
     private void setarFicha(FichaAluno fichaDoAluno){
-       List <String> exerciciosSelecionados = fichaDoAluno.getExercicios();
+       List <Exercicios> exerciciosSelecionados = fichaDoAluno.getExercicios();
         
-        for (Map.Entry<String, JCheckBox> entry : checkBoxListaExercicios.entrySet()) {
-            String exercicio = entry.getKey(); 
-            JCheckBox checkBox = entry.getValue(); 
+        for (Map.Entry<Exercicios, JCheckBox> entry : checkBoxListaExercicios.entrySet()) {
+            Exercicios exercicio = entry.getKey();
+            JCheckBox checkBox = entry.getValue();
 
             if (exerciciosSelecionados.contains(exercicio)) {
-                checkBox.setSelected(true); 
+                checkBox.setSelected(true);
             } else {
                 checkBox.setSelected(false);
             }
@@ -491,7 +492,7 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         nasciFornated.setText("");
         txtAltura.setText("");
         txtPeso.setText("");
-        for (Map.Entry<String, JCheckBox> entry : checkBoxListaExercicios.entrySet()) {
+        for (Map.Entry<Exercicios, JCheckBox> entry : checkBoxListaExercicios.entrySet()) {
             JCheckBox checkBox = entry.getValue();
             checkBox.setSelected(false);
         }

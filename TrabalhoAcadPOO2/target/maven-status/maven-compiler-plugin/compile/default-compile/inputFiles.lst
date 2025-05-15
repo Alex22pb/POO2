@@ -1,11 +1,13 @@
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DAO\AlunoDAO.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DAO\enderecoDAO.java
+D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DAO\ExerciciosDAO.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DAO\FichaAlunoDAO.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DAO\PersonalDAO.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DOMAIN\Aluno.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DOMAIN\endereco.java
+D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DOMAIN\Exercicios.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DOMAIN\FichaAluno.java
-D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DOMAIN\Usuario.java
+D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\DOMAIN\Personal.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\GERENCIADOR\FuncaoAjuda.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\GERENCIADOR\GerenciadorDominio.java
 D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\java\GERENCIADOR\GerenciadorIG.java

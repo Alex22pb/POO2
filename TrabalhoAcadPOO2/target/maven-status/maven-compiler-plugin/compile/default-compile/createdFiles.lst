@@ -13,7 +13,6 @@ DOMAIN\Aluno.class
 GERENCIADOR\FuncaoAjuda.class
 Viewer\TelaCadastroFicha$1.class
 DAO\FichaAlunoDAO.class
-DOMAIN\Usuario.class
 Viewer\TelaLogin$2.class
 Viewer\TelaPesquisar.class
 DAO\PersonalDAO.class
@@ -21,12 +20,15 @@ Viewer\TelaCadastroUsuario.class
 Viewer\TelaCadastroAluno$1.class
 Viewer\TelaCadastroUsuario$1.class
 Viewer\TelaCadastroFicha$2.class
+DOMAIN\Personal.class
 Viewer\TelaCadastroAluno$4.class
+DOMAIN\Exercicios.class
 Viewer\TelaPrincipal$3.class
 GERENCIADOR\GerenciadorDominio.class
 DOMAIN\FichaAluno.class
 Viewer\TelaLogin$1.class
 DOMAIN\endereco.class
+DAO\ExerciciosDAO.class
 Viewer\TelaPesquisar$4.class
 Viewer\TelaPrincipal$2.class
 Viewer\TelaCadastroAluno.class
