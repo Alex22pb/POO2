@@ -4,15 +4,38 @@
  */
 package DOMAIN;
 
+import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
 /**
  *
  * @author 2022222760020
  */
-public class Exercicios {
-    private String nomeExercicio;
+@Entity
+public class Exercicios implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public Exercicios(String nomeExercicio) {
+    @Column(length = 100, nullable = false, unique = true)
+    private String nomeExercicio;
+    
+    @ManyToMany (mappedBy = "exercicios")
+    private List<FichaAluno> fichaAlunos;
+
+    public Exercicios(int id, String nomeExercicio, List<FichaAluno> fichaAlunos) {
+        this.id = id;
         this.nomeExercicio = nomeExercicio;
+        this.fichaAlunos = fichaAlunos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeExercicio() {
@@ -22,6 +45,16 @@ public class Exercicios {
     public void setNomeExercicio(String nomeExercicio) {
         this.nomeExercicio = nomeExercicio;
     }
+
+    public List<FichaAluno> getFichaAlunos() {
+        return fichaAlunos;
+    }
+
+    public void setFichaAlunos(List<FichaAluno> fichaAlunos) {
+        this.fichaAlunos = fichaAlunos;
+    }
+
+    
     
     @Override
     public boolean equals(Object o) {

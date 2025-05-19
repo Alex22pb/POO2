@@ -4,20 +4,45 @@
  */
 package DOMAIN;
 
+import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /* Classe da ficha do aluno
  */
-public class FichaAluno {
+
+@Entity
+public class FichaAluno implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idFicha;
+    
+    @OneToOne
+    @JoinColumn(unique = true, nullable = false)
+    private int idAluno;
+    
+    @Column(length = 20)
     private String tipoFicha;
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "ficha_exercicios",
+        joinColumns = @JoinColumn(name = "ficha_id"),
+        inverseJoinColumns = @JoinColumn(name = "exercicio_id")
+    )
     private List<Exercicios> exercicios;
     private int minRep;
     private int maxRep;
     private int tempDescanso;
     private int serieExerc;
+    
+    @Column(length = 500)
     private String observacoes;
 
-    public FichaAluno(String tipoFicha, List<Exercicios> exercicios, int minRep, int maxRep, int tempDescanso, int serieExerc, String observacoes) {
+    public FichaAluno(int idFicha, int idAluno, String tipoFicha, List<Exercicios> exercicios, int minRep, int maxRep, int tempDescanso, int serieExerc, String observacoes) {
+        this.idFicha = idFicha;
+        this.idAluno = idAluno;
         this.tipoFicha = tipoFicha;
         this.exercicios = exercicios;
         this.minRep = minRep;
@@ -27,15 +52,22 @@ public class FichaAluno {
         this.observacoes = observacoes;
     }
 
-    public String getObservacoes() {
-        return observacoes;
+    public int getIdFicha() {
+        return idFicha;
     }
 
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+    public void setIdFicha(int idFicha) {
+        this.idFicha = idFicha;
     }
 
-    
+    public int getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
+
     public String getTipoFicha() {
         return tipoFicha;
     }
@@ -83,6 +115,14 @@ public class FichaAluno {
     public void setSerieExerc(int serieExerc) {
         this.serieExerc = serieExerc;
     }
-    
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
     
 }

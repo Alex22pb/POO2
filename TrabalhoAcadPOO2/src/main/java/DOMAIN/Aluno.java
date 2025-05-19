@@ -4,61 +4,94 @@
  */
 package DOMAIN;
 
+import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- Classe do aluno, todo o aluno e criado com o myFicha null, para depois criar uma ficha para ele e associar ela 
+ * Classe do aluno, todo o aluno e criado com o myFicha null, para depois criar
+ * uma ficha para ele e associar ela
  */
-public class Aluno {
+@Entity
+public class Aluno implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int IdAluno;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_Personal", referencedColumnName = "idPersonal")
+    private  Personal personal;
+
+    @Column(length = 200)
     private String nome;
+
+    @Column(updatable = false, length = 14, nullable = false)
     private String cpf;
-    private String dataNasc;
-    private String sexo;
+
+    @Column(updatable = false, nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dataNasc;
+
+    @Column(length = 1)
+    private char sexo;
+
+    @Column(nullable = false)
     private double peso;
+
+    @Column(nullable = false)
     private double altura;
-    private String cidade;
-    private String rua;
-    private String bairro;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco")
+    private Endereco endereco;
+
+    @Column(length = 100)
     private String eMail;
-    private FichaAluno myFicha = null;
+
+    @OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL)
+    private FichaAluno myFicha;
+
+    @Column(nullable = false)
     private boolean jaTreinou;
+
+    @Column(length = 20)
     private String tipoPlano;
 
-    public Aluno(String nome, String cpf, String dataNasc, String sexo, double peso, double altura, String cidade, String rua, String bairro, String eMail, boolean jaTreinou, String tipoPlano) {
+    @Lob
+    private byte[] foto;
+
+    public Aluno(int IdAluno, Personal personal, String nome, String cpf, Date dataNasc, char sexo, double peso, double altura, Endereco endereco, String eMail, FichaAluno myFicha, boolean jaTreinou, String tipoPlano, byte[] foto) {
+        this.IdAluno = IdAluno;
+        this.personal = personal;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
         this.sexo = sexo;
         this.peso = peso;
         this.altura = altura;
-        this.cidade = cidade;
-        this.rua = rua;
-        this.bairro = bairro;
+        this.endereco = endereco;
         this.eMail = eMail;
-        this.jaTreinou = jaTreinou;
-        this.tipoPlano = tipoPlano;
-    }
-
-    public String getTipoPlano() {
-        return tipoPlano;
-    }
-
-    public void setTipoPlano(String tipoPlano) {
-        this.tipoPlano = tipoPlano;
-    }
-    
-    public boolean isJaTreinou() {
-        return jaTreinou;
-    }
-
-    public void setJaTreinou(boolean jaTreinou) {
-        this.jaTreinou = jaTreinou;
-    }
-
-    public FichaAluno getMyFicha() {
-        return myFicha;
-    }
-
-    public void setMyFicha(FichaAluno myFicha) {
         this.myFicha = myFicha;
+        this.jaTreinou = jaTreinou;
+        this.tipoPlano = tipoPlano;
+        this.foto = foto;
+    }
+
+    public int getIdAluno() {
+        return IdAluno;
+    }
+
+    public void setIdAluno(int IdAluno) {
+        this.IdAluno = IdAluno;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
     }
 
     public String getNome() {
@@ -77,19 +110,19 @@ public class Aluno {
         this.cpf = cpf;
     }
 
-    public String getDataNasc() {
+    public Date getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(String dataNasc) {
+    public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
 
-    public String getSexo() {
+    public char getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(char sexo) {
         this.sexo = sexo;
     }
 
@@ -109,28 +142,12 @@ public class Aluno {
         this.altura = altura;
     }
 
-    public String getCidade() {
-        return cidade;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public String geteMail() {
@@ -140,7 +157,37 @@ public class Aluno {
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
-   
-    
-    
+
+    public FichaAluno getMyFicha() {
+        return myFicha;
+    }
+
+    public void setMyFicha(FichaAluno myFicha) {
+        this.myFicha = myFicha;
+    }
+
+    public boolean isJaTreinou() {
+        return jaTreinou;
+    }
+
+    public void setJaTreinou(boolean jaTreinou) {
+        this.jaTreinou = jaTreinou;
+    }
+
+    public String getTipoPlano() {
+        return tipoPlano;
+    }
+
+    public void setTipoPlano(String tipoPlano) {
+        this.tipoPlano = tipoPlano;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+  
 }

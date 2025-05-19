@@ -28,19 +28,19 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         initComponents();
         this.setResizable(false);
         
-        checkBoxListaExercicios.put(new Exercicios("Agachamento Livre"), agachamento);
-        checkBoxListaExercicios.put(new Exercicios("Sulpino Reto com Halteres"), sulpinoHalter);
-        checkBoxListaExercicios.put(new Exercicios("Remada Baixa"), remadabaixa);
-        checkBoxListaExercicios.put(new Exercicios("Afundo Alternado"), afundo);
-        checkBoxListaExercicios.put(new Exercicios("Desenvolvimento Ombro"), desenvolvimento);
-        checkBoxListaExercicios.put(new Exercicios("Prancha Abdominal"), prancha);
-        checkBoxListaExercicios.put(new Exercicios("Leg Press 45°"), legPress);
-        checkBoxListaExercicios.put(new Exercicios("Sulpino Reto Barra"), sulpinoReto);
-        checkBoxListaExercicios.put(new Exercicios("Crucifixo Máquina"), crucifixo);
-        checkBoxListaExercicios.put(new Exercicios("Rosca Direta"), roscaDireta);
-        checkBoxListaExercicios.put(new Exercicios("Tríceps Corda"), tricepsCorda);
-        checkBoxListaExercicios.put(new Exercicios("Levantamento Terra"), terraLevantar);
-        checkBoxListaExercicios.put(new Exercicios("Barra Fixa"), barraFixa);
+        checkBoxListaExercicios.put(new Exercicios(0,"Agachamento Livre", null), agachamento);
+        checkBoxListaExercicios.put(new Exercicios(1,"Sulpino Reto com Halteres", null), sulpinoHalter);
+        checkBoxListaExercicios.put(new Exercicios(2,"Remada Baixa", null), remadabaixa);
+        checkBoxListaExercicios.put(new Exercicios(3,"Afundo Alternado", null), afundo);
+        checkBoxListaExercicios.put(new Exercicios(4,"Desenvolvimento Ombro", null), desenvolvimento);
+        checkBoxListaExercicios.put(new Exercicios(5,"Prancha Abdominal", null), prancha);
+        checkBoxListaExercicios.put(new Exercicios(6,"Leg Press 45°", null), legPress);
+        checkBoxListaExercicios.put(new Exercicios(7,"Sulpino Reto Barra", null), sulpinoReto);
+        checkBoxListaExercicios.put(new Exercicios(8,"Crucifixo Máquina", null), crucifixo);
+        checkBoxListaExercicios.put(new Exercicios(9,"Rosca Direta", null), roscaDireta);
+        checkBoxListaExercicios.put(new Exercicios(10,"Tríceps Corda", null), tricepsCorda);
+        checkBoxListaExercicios.put(new Exercicios(11,"Levantamento Terra", null), terraLevantar);
+        checkBoxListaExercicios.put(new Exercicios(12,"Barra Fixa", null), barraFixa);
     }
 
     /**

@@ -4,7 +4,7 @@
  */
 package GERENCIADOR;
 
-import DOMAIN.endereco;
+import DOMAIN.Endereco;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,8 +19,8 @@ import org.json.JSONObject;
  */
 public class FuncaoAjuda {
        
-    public static endereco ConsultarCEP(String cep) throws MalformedURLException, IOException{
-        endereco ender = null;
+    public static Endereco ConsultarCEP(String cep) throws MalformedURLException, IOException{
+        Endereco ender = null;
         
         URL link = new URL ("https://viacep.com.br/ws/" + cep + "/json/");
         
@@ -39,7 +39,7 @@ public class FuncaoAjuda {
         
         if(!jsonObject.has("erro")){
             
-            ender = new endereco();
+            ender = new Endereco();
             ender.setEndereco(jsonObject.getString("logradouro"));
             ender.setBairro(jsonObject.getString("bairro"));
             ender.setCidade(jsonObject.getString("localidade"));
