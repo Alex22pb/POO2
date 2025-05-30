@@ -49,6 +49,9 @@ public class Personal implements Serializable{
     @Column(length = 20)
     private String numeracaoCREF;
 
+    public Personal() {
+    }
+    
     public Personal(int idPersonal, String nome, Date dateNasc, String cpf, String telefone, byte[] foto, String eMail, char sexo, String numeracaoCREF) {
         this.idPersonal = idPersonal;
         this.nome = nome;
@@ -150,5 +153,10 @@ public class Personal implements Serializable{
 
     public void setNumeracaoCREF(String numeracaoCREF) {
         this.numeracaoCREF = numeracaoCREF;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 }

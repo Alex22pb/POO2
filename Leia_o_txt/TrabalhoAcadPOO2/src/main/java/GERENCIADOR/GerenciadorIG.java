@@ -9,7 +9,9 @@ import Viewer.TelaCadastroFicha;
 import Viewer.TelaCadastroPersonal;
 import Viewer.TelaCadastroUsuario;
 import Viewer.TelaLogin;
-import Viewer.TelaPesquisar;
+import Viewer.TelaPesquisarAluno;
+import Viewer.TelaPesquisarFicha;
+import Viewer.TelaPesquisarPersonal;
 import Viewer.TelaPrincipal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -26,14 +28,15 @@ public class GerenciadorIG {
     private TelaPrincipal telaPrincipal= null;
     private TelaCadastroAluno telaAluno = null;
     private TelaCadastroFicha telaFicha = null;
-    private TelaPesquisar telaPesquisa = null;
+    private TelaPesquisarAluno telaPesqAluno = null;
     private TelaCadastroUsuario telaUsuario = null;
     private TelaCadastroPersonal telaPersonal = null;
+    private TelaPesquisarPersonal telaPesquisaPersonal = null;
+    private TelaPesquisarFicha telaPesquisarFicha = null;
     private GerenciadorDominio gerDom;
 
     private static final GerenciadorIG myInstance = new GerenciadorIG();
 
-    
      private GerenciadorIG() {        
         try {
             gerDom = new GerenciadorDominio();
@@ -90,8 +93,16 @@ public class GerenciadorIG {
         abrirJanelaDlg(telaPrincipal, telaPersonal, TelaCadastroPersonal.class);
     }
     
-    public void abrirTelaPesquisar(){
-        abrirJanelaDlg(telaPrincipal, telaPesquisa, TelaPesquisar.class);
+    public void abrirTelaPesquisarAluno(){
+        abrirJanelaDlg(telaPrincipal, telaPesqAluno, TelaPesquisarAluno.class);
+    }
+       
+    public void abrirTelaPesquisarFicha(){
+        abrirJanelaDlg(telaPrincipal, telaPesquisarFicha, TelaPesquisarFicha.class);
+    }
+    
+    public void abrirTelaPesquisarPersonal(){
+        abrirJanelaDlg(telaPrincipal, telaPesquisaPersonal, TelaPesquisarPersonal.class);
     }
     
     public void abrirTelaUsuario(){

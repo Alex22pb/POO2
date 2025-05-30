@@ -27,7 +27,7 @@ public class TelaCadastroPersonal extends javax.swing.JDialog {
     /**
      * Creates new form TelaCadastroPersonal
      */
-    public TelaCadastroPersonal(java.awt.Frame parent, boolean modal) {
+    public TelaCadastroPersonal(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
         initComponents();
     }

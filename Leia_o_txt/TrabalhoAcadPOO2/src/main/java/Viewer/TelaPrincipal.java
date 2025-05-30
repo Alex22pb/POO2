@@ -47,7 +47,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastroFicha = new javax.swing.JMenuItem();
         CadastroPersonal = new javax.swing.JMenuItem();
         MenuBarPesqusiar = new javax.swing.JMenu();
-        menuItemPesquisa = new javax.swing.JMenuItem();
+        menuPersonal = new javax.swing.JMenuItem();
+        menuFicha = new javax.swing.JMenuItem();
+        menuAluno = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,15 +147,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuBarPesqusiar.setText("Pesquisar");
 
-        menuItemPesquisa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuItemPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-12.png"))); // NOI18N
-        menuItemPesquisa.setText("Pesquisar Aluno");
-        menuItemPesquisa.addActionListener(new java.awt.event.ActionListener() {
+        menuPersonal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-12.png"))); // NOI18N
+        menuPersonal.setText("Pesquisar Personal");
+        menuPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemPesquisaActionPerformed(evt);
+                menuPersonalActionPerformed(evt);
             }
         });
-        MenuBarPesqusiar.add(menuItemPesquisa);
+        MenuBarPesqusiar.add(menuPersonal);
+
+        menuFicha.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-12.png"))); // NOI18N
+        menuFicha.setText("Pesquisar Ficha");
+        menuFicha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFichaActionPerformed(evt);
+            }
+        });
+        MenuBarPesqusiar.add(menuFicha);
+
+        menuAluno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-12.png"))); // NOI18N
+        menuAluno.setText("Pesquisar Aluno");
+        menuAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAlunoActionPerformed(evt);
+            }
+        });
+        MenuBarPesqusiar.add(menuAluno);
 
         MenuBarraPrinci.add(MenuBarPesqusiar);
 
@@ -170,13 +192,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         GerenciadorIG.getMyInstance().abrirTelaCadastroFicha();
     }//GEN-LAST:event_CadastroFichaActionPerformed
 
-    private void menuItemPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPesquisaActionPerformed
-        GerenciadorIG.getMyInstance().abrirTelaPesquisar();
-    }//GEN-LAST:event_menuItemPesquisaActionPerformed
-
     private void CadastroPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroPersonalActionPerformed
         GerenciadorIG.getMyInstance().abrirTelaCadastroPersonal();
     }//GEN-LAST:event_CadastroPersonalActionPerformed
+
+    private void menuPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPersonalActionPerformed
+        GerenciadorIG.getMyInstance().abrirTelaPesquisarPersonal();
+    }//GEN-LAST:event_menuPersonalActionPerformed
+
+    private void menuFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFichaActionPerformed
+        GerenciadorIG.getMyInstance().abrirTelaPesquisarFicha();
+    }//GEN-LAST:event_menuFichaActionPerformed
+
+    private void menuAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlunoActionPerformed
+        GerenciadorIG.getMyInstance().abrirTelaPesquisarAluno();
+    }//GEN-LAST:event_menuAlunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,7 +225,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelFoto;
-    private javax.swing.JMenuItem menuItemPesquisa;
+    private javax.swing.JMenuItem menuAluno;
+    private javax.swing.JMenuItem menuFicha;
+    private javax.swing.JMenuItem menuPersonal;
     private javax.swing.JTable tableAniversariantes;
     private javax.swing.JTable tableVencimento;
     // End of variables declaration//GEN-END:variables

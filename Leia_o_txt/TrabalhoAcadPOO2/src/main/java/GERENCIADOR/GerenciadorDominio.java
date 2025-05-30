@@ -116,6 +116,10 @@ public class GerenciadorDominio {
        return perso; 
     }
     
+    public List<FichaAluno> listarFicha(Class classe) throws HibernateException{ 
+        return generic_DAO.listar(classe);
+    }
+    
     public void excluir (Object obj) throws HibernateException{
         generic_DAO.excluir(obj);
     }
@@ -168,7 +172,7 @@ public class GerenciadorDominio {
                 break;
         }
 
-        return new FichaAluno(0 , null, tipo, exerc,0 , 0, 0, minRep, maxRep, temDesc, serieExer, obs);
+        return new FichaAluno(0 , null, tipo, exerc, 0, 0, 0, minRep, maxRep, temDesc, serieExer, null, obs);
     }
    
 }

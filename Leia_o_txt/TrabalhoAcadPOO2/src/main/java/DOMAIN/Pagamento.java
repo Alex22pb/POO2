@@ -24,6 +24,9 @@ public class Pagamento {
     private double valorPagamento;
     private Date diaPagamento;
 
+    public Pagamento() {
+    }
+    
     public Pagamento(int id_pagamento, Aluno aluno, double valorPagamento, Date diaPagamento) {
         this.id_pagamento = id_pagamento;
         this.aluno = aluno;

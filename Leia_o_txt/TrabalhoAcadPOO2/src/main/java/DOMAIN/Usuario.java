@@ -39,6 +39,9 @@ public class Usuario implements Serializable{
     @Column (length = 20)
     private String telefone;
 
+    public Usuario() {
+    }
+    
     public Usuario(int idUsuario, String userName, String senha, Date dateNasc, String nome, String cpf, String telefone) {
         this.idUsuario = idUsuario;
         this.userName = userName;

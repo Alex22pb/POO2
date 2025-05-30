@@ -40,12 +40,15 @@ public class FichaAluno implements Serializable{
     private int maxRep;
     private int tempDescanso;
     private int serieExerc;
-    private Date diaCriacaoFicha = new Date();
+    private Date diaCriacaoFicha;
     
     @Column(length = 500)
     private String observacoes;
 
-    public FichaAluno(int idFicha, Aluno aluno, String tipoFicha, List<Exercicios> exercicios, double porcentagemGordura, double peso, double altura, int minRep, int maxRep, int tempDescanso, int serieExerc, String observacoes) {
+    public FichaAluno() {
+    }
+    
+    public FichaAluno(int idFicha, Aluno aluno, String tipoFicha, List<Exercicios> exercicios, double porcentagemGordura, double peso, double altura, int minRep, int maxRep, int tempDescanso, int serieExerc, Date diaCriacaoFicha, String observacoes) {
         this.idFicha = idFicha;
         this.aluno = aluno;
         this.tipoFicha = tipoFicha;
@@ -57,10 +60,11 @@ public class FichaAluno implements Serializable{
         this.maxRep = maxRep;
         this.tempDescanso = tempDescanso;
         this.serieExerc = serieExerc;
+        this.diaCriacaoFicha = diaCriacaoFicha;
         this.observacoes = observacoes;
     }
 
-    public FichaAluno(Aluno aluno, String tipoFicha, List<Exercicios> exercicios, double porcentagemGordura, double peso, double altura, int minRep, int maxRep, int tempDescanso, int serieExerc, String observacoes) {
+    public FichaAluno(Aluno aluno, String tipoFicha, List<Exercicios> exercicios, double porcentagemGordura, double peso, double altura, int minRep, int maxRep, int tempDescanso, int serieExerc, Date diaCriacaoFicha, String observacoes) {
         this.aluno = aluno;
         this.tipoFicha = tipoFicha;
         this.exercicios = exercicios;
@@ -71,6 +75,7 @@ public class FichaAluno implements Serializable{
         this.maxRep = maxRep;
         this.tempDescanso = tempDescanso;
         this.serieExerc = serieExerc;
+        this.diaCriacaoFicha = diaCriacaoFicha;
         this.observacoes = observacoes;
     }
 

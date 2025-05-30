@@ -24,6 +24,9 @@ public class Exercicios implements Serializable{
     @ManyToMany (mappedBy = "exercicios")
     private List<FichaAluno> fichaAlunos;
 
+    public Exercicios() {
+    }
+
     public Exercicios(int id, String nomeExercicio, List<FichaAluno> fichaAlunos) {
         this.id = id;
         this.nomeExercicio = nomeExercicio;

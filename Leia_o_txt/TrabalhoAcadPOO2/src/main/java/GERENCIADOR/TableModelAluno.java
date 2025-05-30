@@ -38,14 +38,13 @@ public class TableModelAluno extends AbstractTableModel{
             case 4: return aluno.geteMail();
             case 5: return aluno.getTelefone();
             case 6: return aluno.getPersonal();
-
         }
         return null;
     }
 
     @Override
     public String getColumnName(int column) {
-        String nomes[] = {"Nome", "CPF", "Data Nascimento", "Tipo do Plano", "E-mail", "Telefone" };
+        String nomes[] = {"Nome", "CPF", "Data Nascimento", "Tipo do Plano", "E-mail", "Telefone", "Personal"};
         return nomes[column];
     }
     

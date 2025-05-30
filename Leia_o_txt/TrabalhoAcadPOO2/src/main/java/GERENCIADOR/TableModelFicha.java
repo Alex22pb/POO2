@@ -18,7 +18,7 @@ public class TableModelFicha extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;   // Quantidade de colunas da TABELA
+        return 5;   // Quantidade de colunas da TABELA
     }
     
     @Override
@@ -35,13 +35,14 @@ public class TableModelFicha extends AbstractTableModel {
             case 1: return ficha.getAltura();
             case 2: return ficha.getPeso();
             case 3: return ficha.getPorcentagemGordura();
+            case 4: return ficha.getDiaCriacaoFicha();
         }
         return null;
     }
 
     @Override
     public String getColumnName(int column) {
-        String nomes[] = {"Tipo da Ficha", "Altura", "Peso", "Porcentagem de Gordura" };
+        String nomes[] = {"Tipo da Ficha", "Altura", "Peso", "Porcentagem de Gordura", "Dia da Criação" };
         return nomes[column];
     }
     
