@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+import DOMAIN.Personal;
 import GERENCIADOR.GerenciadorIG;
 import javax.swing.JOptionPane;
 
@@ -12,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    
     private GerenciadorIG genIG;
     
     public TelaLogin(GerenciadorIG newGerenIG) {
@@ -124,14 +125,14 @@ public class TelaLogin extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 240, 170));
 
-        labelFoto.setIcon(new javax.swing.ImageIcon("D:\\Users\\2022222760020\\Downloads\\Leia_o_txt\\TrabalhoAcadPOO2\\src\\main\\resources\\Imagens\\Logo_Pequena.jpg")); // NOI18N
+        labelFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo_Pequena.jpg"))); // NOI18N
         getContentPane().add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 355));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
-        if(genIG.verificarUsuarioSenha(textFiledNomedeUsu.getText(), textSenha.getText())){
+        if(GerenciadorIG.getMyInstance().verificarUsuarioSenha(textFiledNomedeUsu.getText(), textSenha.getText())){
             genIG.abrirTelaPrincipal();
         }else{
             JOptionPane.showMessageDialog(null, "Usuário ou senha errado.", "Tela de Login", JOptionPane.INFORMATION_MESSAGE);
@@ -140,7 +141,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEntrarActionPerformed
 
     private void buttonNovoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoUserActionPerformed
-        genIG.abrirTelaUsuario();
+        GerenciadorIG.getMyInstance().abrirTelaUsuario();
     }//GEN-LAST:event_buttonNovoUserActionPerformed
 
     private void textSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSenhaActionPerformed

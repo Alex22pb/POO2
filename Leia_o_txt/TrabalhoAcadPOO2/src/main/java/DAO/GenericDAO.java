@@ -45,7 +45,7 @@ public class GenericDAO {
             sessao = ConexaoHibernate.getSessionFactory().openSession();
             sessao.getTransaction().begin();
             
-            sessao.save(obj);
+            sessao.delete(obj);
             
             sessao.getTransaction().commit();
             sessao.close();
@@ -64,7 +64,7 @@ public class GenericDAO {
             sessao = ConexaoHibernate.getSessionFactory().openSession();
             sessao.getTransaction().begin();
             
-            sessao.save(obj);
+            sessao.update(obj);
             
             sessao.getTransaction().commit();
             sessao.close();

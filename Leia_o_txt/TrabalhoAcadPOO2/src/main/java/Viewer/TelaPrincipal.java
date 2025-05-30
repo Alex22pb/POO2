@@ -45,6 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Cadastros = new javax.swing.JMenu();
         CadastroAluni = new javax.swing.JMenuItem();
         CadastroFicha = new javax.swing.JMenuItem();
+        CadastroPersonal = new javax.swing.JMenuItem();
         MenuBarPesqusiar = new javax.swing.JMenu();
         menuItemPesquisa = new javax.swing.JMenuItem();
 
@@ -105,13 +106,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 400, 390));
 
-        labelFoto.setIcon(new javax.swing.ImageIcon("D:\\Users\\2022222760020\\Downloads\\Leia_o_txt\\TrabalhoAcadPOO2\\src\\main\\resources\\Imagens\\Logo_Grande.jpg")); // NOI18N
+        labelFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo_Grande.jpg"))); // NOI18N
         getContentPane().add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Cadastros.setText("Cadastro");
 
         CadastroAluni.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        CadastroAluni.setIcon(new javax.swing.ImageIcon("D:\\Users\\2022222760020\\Downloads\\Leia_o_txt\\TrabalhoAcadPOO2\\src\\main\\resources\\Imagens\\icons8-cadastro-12.png")); // NOI18N
+        CadastroAluni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-cadastro-12.png"))); // NOI18N
         CadastroAluni.setText("Cadastro Aluno");
         CadastroAluni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Cadastros.add(CadastroAluni);
 
         CadastroFicha.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        CadastroFicha.setIcon(new javax.swing.ImageIcon("D:\\Users\\2022222760020\\Downloads\\Leia_o_txt\\TrabalhoAcadPOO2\\src\\main\\resources\\Imagens\\icons8-novo-documento-12.png")); // NOI18N
+        CadastroFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-novo-documento-12.png"))); // NOI18N
         CadastroFicha.setText("Cadastro Ficha");
         CadastroFicha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,12 +131,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         Cadastros.add(CadastroFicha);
 
+        CadastroPersonal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        CadastroPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-treinador-pessoal-12.png"))); // NOI18N
+        CadastroPersonal.setText("Cadastro Personal");
+        CadastroPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroPersonalActionPerformed(evt);
+            }
+        });
+        Cadastros.add(CadastroPersonal);
+
         MenuBarraPrinci.add(Cadastros);
 
         MenuBarPesqusiar.setText("Pesquisar");
 
         menuItemPesquisa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuItemPesquisa.setIcon(new javax.swing.ImageIcon("D:\\Users\\2022222760020\\Downloads\\Leia_o_txt\\TrabalhoAcadPOO2\\src\\main\\resources\\Imagens\\icons8-pesquisar-12.png")); // NOI18N
+        menuItemPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-12.png"))); // NOI18N
         menuItemPesquisa.setText("Pesquisar Aluno");
         menuItemPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,16 +163,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadastroAluniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroAluniActionPerformed
-        genIG.abrirTelaCadastroAluno();
+        GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
     }//GEN-LAST:event_CadastroAluniActionPerformed
 
     private void CadastroFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichaActionPerformed
-        genIG.abrirTelaCadastroFicha();
+        GerenciadorIG.getMyInstance().abrirTelaCadastroFicha();
     }//GEN-LAST:event_CadastroFichaActionPerformed
 
     private void menuItemPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPesquisaActionPerformed
-        genIG.abrirTelaPesquisar();
+        GerenciadorIG.getMyInstance().abrirTelaPesquisar();
     }//GEN-LAST:event_menuItemPesquisaActionPerformed
+
+    private void CadastroPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroPersonalActionPerformed
+        GerenciadorIG.getMyInstance().abrirTelaCadastroPersonal();
+    }//GEN-LAST:event_CadastroPersonalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +185,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CadastroAluni;
     private javax.swing.JMenuItem CadastroFicha;
+    private javax.swing.JMenuItem CadastroPersonal;
     private javax.swing.JMenu Cadastros;
     private javax.swing.JMenu MenuBarPesqusiar;
     private javax.swing.JMenuBar MenuBarraPrinci;

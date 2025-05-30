@@ -4,24 +4,33 @@
  */
 package Viewer;
 
+import DOMAIN.Aluno;
+import GERENCIADOR.FuncaoAjuda;
 import GERENCIADOR.GerenciadorIG;
+import GERENCIADOR.TableModelAluno;
 import java.awt.Component;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 /**
  *
  * @author User
  */
 public class TelaPesquisar extends javax.swing.JDialog {
-
-    private GerenciadorIG genIG;
+    
+    private Aluno alunoSelect = null;
+    
+    private TableModelAluno tableAluno;
     
     public TelaPesquisar(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
-        this.genIG = newGerenIG;
         initComponents();
         this.setResizable(false);
         
+        tableAluno = new TableModelAluno();
+        tblAluno.setModel(tableAluno); 
     }
     
     /**
@@ -40,7 +49,7 @@ public class TelaPesquisar extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAluno = new javax.swing.JTable();
         buttonEditar = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         buttonCriarFicha = new javax.swing.JButton();
@@ -63,19 +72,19 @@ public class TelaPesquisar extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado da Busca"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAluno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Data Nascimento", "Tipo do Plano", "E-mail", "Telefone"
+                "Nome", "CPF", "Data Nascimento", "Tipo do Plano", "E-mail", "Telefone", "Personal"
             }
         ));
-        jTable1.setComponentPopupMenu(popUpMenu);
-        jScrollPane1.setViewportView(jTable1);
+        tblAluno.setComponentPopupMenu(popUpMenu);
+        jScrollPane1.setViewportView(tblAluno);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -93,6 +102,7 @@ public class TelaPesquisar extends javax.swing.JDialog {
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
+        buttonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-editar-usuário-masculino-12.png"))); // NOI18N
         buttonEditar.setText("Editar Dados");
         buttonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +110,7 @@ public class TelaPesquisar extends javax.swing.JDialog {
             }
         });
 
+        buttonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-lixo-12.png"))); // NOI18N
         buttonExcluir.setText("Excluir");
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +118,7 @@ public class TelaPesquisar extends javax.swing.JDialog {
             }
         });
 
+        buttonCriarFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-novo-documento-12.png"))); // NOI18N
         buttonCriarFicha.setText("Criar Ficha");
         buttonCriarFicha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +128,7 @@ public class TelaPesquisar extends javax.swing.JDialog {
 
         jLabel1.setText("Digite o nome do aluno:");
 
+        buttonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-12.png"))); // NOI18N
         buttonBuscar.setText("Buscar");
         buttonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,20 +145,20 @@ public class TelaPesquisar extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119)
-                .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonCriarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(buttonCriarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(buttonBuscar)
+                .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,23 +201,48 @@ public class TelaPesquisar extends javax.swing.JDialog {
 
     private void buttonCriarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCriarFichaActionPerformed
         this.setVisible(false);
-        genIG.abrirTelaCadastroFicha();
+        GerenciadorIG.getMyInstance().abrirTelaCadastroFicha();
         // A pessoa poderá criar uma ficha ao clicar nesse notão, irá jogar os dados necessarios para a tela criar ficha e de la mesmo, sem precisar buscar o aluno
         // criar a ficha desse aluno
     }//GEN-LAST:event_buttonCriarFichaActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
         this.setVisible(false);
-        genIG.abrirTelaCadastroAluno();
+        GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
         // jogar os dados do aluno que ele selecionou na jtable e jogar para a tela cadastro de aluno os dados da pessoa que ele escolheu
         // e dentro da tela cadastrar aluno ele alterar os dados que deseja e em seguida da update na tabela
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        // Excluir algum aluno
+        try{
+            int linha = tblAluno.getSelectedRow();
+            if(linha >= 0){
+                Aluno alu = (Aluno) tableAluno.getItem(linha);
+                GerenciadorIG.getMyInstance().getGerDom().excluir(alu);
+                JOptionPane.showMessageDialog(this, "Aluno excluido com sucesso..", "Pesquisar Cliente", JOptionPane.INFORMATION_MESSAGE);
+
+            }else{
+                JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Cliente", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao excluir cliente! " + ex, "Pesquisar Cliente", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
+        
+        try{
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            
+            if(listaAluno.size() > 0){
+                tableAluno.setLista(listaAluno);
+            }else{
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+            }
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar aluno! " + ex, "Pesquisar Cliente", JOptionPane.ERROR_MESSAGE);
+        }
         // Ao ser integrado o sistema com banco, ele ira buscar os alunos com o nome que a pessoa digitou e listar na JTable
         // e ao clicar no botão selecionar, jogar os dados da pessoa que ele quer para o cadastro de ficha.
     }//GEN-LAST:event_buttonBuscarActionPerformed
@@ -223,11 +261,11 @@ public class TelaPesquisar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem menuItemPopUpCriarFicha;
     private javax.swing.JMenuItem menuItemPopUpEditar;
     private javax.swing.JMenuItem menuItemPopUpExcluir;
     private javax.swing.JPopupMenu popUpMenu;
+    private javax.swing.JTable tblAluno;
     // End of variables declaration//GEN-END:variables
 }

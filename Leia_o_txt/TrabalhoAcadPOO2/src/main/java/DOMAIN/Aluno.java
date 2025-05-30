@@ -28,7 +28,7 @@ public class Aluno implements Serializable{
     @Column(length = 200)
     private String nome;
 
-    @Column(updatable = false, length = 14, nullable = false)
+    @Column(updatable = false, length = 20, nullable = false)
     private String cpf;
 
     @Column(updatable = false, nullable = false)
@@ -40,9 +40,9 @@ public class Aluno implements Serializable{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
-    private Endereco endereco;
+    private Endereco endereco; //ERRO
     
-    @Column (length = 11)
+    @Column (length = 20)
     private String telefone;
 
     @Column(length = 100)
@@ -236,7 +236,9 @@ public class Aluno implements Serializable{
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
-    }
-
+    }  
     
+     public String toString() {
+        return this.nome;
+    }
 }

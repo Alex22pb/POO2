@@ -6,6 +6,7 @@ package DOMAIN;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,14 +22,8 @@ public class Personal implements Serializable{
     private int idPersonal;
     
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL)
-    private List<Aluno> aluno;
-    
-    @Column(length = 30, nullable = false)
-    private String userName;
-    
-    @Column(length = 60, nullable = false) 
-    private String senha;
-    
+    private List<Aluno> aluno = new ArrayList<>();
+        
     @Column(length = 60, nullable = false) 
     private String nome;
     
@@ -36,31 +31,45 @@ public class Personal implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dateNasc;
     
-    @Column(updatable = false, length = 14, nullable = false)
+    @Column(updatable = false, length = 20, nullable = false)
     private String cpf;
     
-    @Column (length = 11)
+    @Column (length = 20)
     private String telefone;
-
-    public Personal(int idPersonal, List<Aluno> aluno, String userName, String senha, String nome, Date dateNasc, String cpf, String telefone) {
-        this.idPersonal = idPersonal;
-        this.aluno = aluno;
-        this.userName = userName;
-        this.senha = senha;
-        this.nome = nome;
-        this.dateNasc = dateNasc;
-        this.cpf = cpf;
-        this.telefone = telefone;
-    }
     
-    public Personal( List<Aluno> aluno, String userName, String senha, String nome, Date dateNasc, String cpf, String telefone) {
-        this.aluno = aluno;
-        this.userName = userName;
-        this.senha = senha;
+    @Lob
+    private byte[] foto;
+
+    @Column(length = 100)
+    private String eMail;
+    
+    @Column(length = 1)
+    private char sexo;
+    
+    @Column(length = 20)
+    private String numeracaoCREF;
+
+    public Personal(int idPersonal, String nome, Date dateNasc, String cpf, String telefone, byte[] foto, String eMail, char sexo, String numeracaoCREF) {
+        this.idPersonal = idPersonal;
         this.nome = nome;
         this.dateNasc = dateNasc;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.foto = foto;
+        this.eMail = eMail;
+        this.sexo = sexo;
+        this.numeracaoCREF = numeracaoCREF;
+    }
+
+    public Personal(String nome, Date dateNasc, String cpf, String telefone, byte[] foto, String eMail, char sexo, String numeracaoCREF) {
+        this.nome = nome;
+        this.dateNasc = dateNasc;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.foto = foto;
+        this.eMail = eMail;
+        this.sexo = sexo;
+        this.numeracaoCREF = numeracaoCREF;
     }
 
     public int getIdPersonal() {
@@ -77,22 +86,6 @@ public class Personal implements Serializable{
 
     public void setAluno(List<Aluno> aluno) {
         this.aluno = aluno;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getNome() {
@@ -127,5 +120,35 @@ public class Personal implements Serializable{
         this.telefone = telefone;
     }
 
-    
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getNumeracaoCREF() {
+        return numeracaoCREF;
+    }
+
+    public void setNumeracaoCREF(String numeracaoCREF) {
+        this.numeracaoCREF = numeracaoCREF;
+    }
 }

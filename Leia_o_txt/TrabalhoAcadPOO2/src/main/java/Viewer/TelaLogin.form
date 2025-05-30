@@ -155,7 +155,7 @@
     <Component class="javax.swing.JLabel" name="labelFoto">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\resources\Imagens\Logo_Pequena.jpg"/>
+          <Image iconType="3" name="/Imagens/Logo_Pequena.jpg"/>
         </Property>
       </Properties>
       <Constraints>

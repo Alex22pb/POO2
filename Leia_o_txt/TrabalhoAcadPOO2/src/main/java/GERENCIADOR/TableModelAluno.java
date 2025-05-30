@@ -18,7 +18,7 @@ public class TableModelAluno extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 6;   // Quantidade de colunas da TABELA
+        return 7;   // Quantidade de colunas da TABELA
     }
     
     @Override
@@ -37,6 +37,7 @@ public class TableModelAluno extends AbstractTableModel{
             case 3: return aluno.getTipoPlano();
             case 4: return aluno.geteMail();
             case 5: return aluno.getTelefone();
+            case 6: return aluno.getPersonal();
 
         }
         return null;

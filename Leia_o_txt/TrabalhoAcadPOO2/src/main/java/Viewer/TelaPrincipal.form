@@ -15,7 +15,7 @@
                   <KeyStroke key="Ctrl+Alt+C"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\resources\Imagens\icons8-cadastro-12.png"/>
+                  <Image iconType="3" name="/Imagens/icons8-cadastro-12.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastro Aluno"/>
               </Properties>
@@ -29,12 +29,26 @@
                   <KeyStroke key="Ctrl+Alt+F"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\resources\Imagens\icons8-novo-documento-12.png"/>
+                  <Image iconType="3" name="/Imagens/icons8-novo-documento-12.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cadastro Ficha"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroFichaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="CadastroPersonal">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+P"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagens/icons8-treinador-pessoal-12.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cadastro Personal"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroPersonalActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -50,7 +64,7 @@
                   <KeyStroke key="Ctrl+Alt+L"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\resources\Imagens\icons8-pesquisar-12.png"/>
+                  <Image iconType="3" name="/Imagens/icons8-pesquisar-12.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pesquisar Aluno"/>
               </Properties>
@@ -185,7 +199,7 @@
     <Component class="javax.swing.JLabel" name="labelFoto">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\Users\2022222760020\Downloads\Leia_o_txt\TrabalhoAcadPOO2\src\main\resources\Imagens\Logo_Grande.jpg"/>
+          <Image iconType="3" name="/Imagens/Logo_Grande.jpg"/>
         </Property>
       </Properties>
       <Constraints>

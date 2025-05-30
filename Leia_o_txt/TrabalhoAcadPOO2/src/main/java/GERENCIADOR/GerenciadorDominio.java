@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.swing.Icon;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -61,7 +62,7 @@ public class GerenciadorDominio {
         
         return alu;
     }
-            
+          
     public Aluno alterarAluno(Aluno alu, String nome, Date dataNasc, String cpf, String cep, String cidade, String bairro, String rua, 
             String email, String telefone, Icon foto, char sexo, boolean jaTreinou, String plano, int diaVencimento){
      
@@ -73,7 +74,7 @@ public class GerenciadorDominio {
         alu.getEndereco().setRua(rua);
         alu.seteMail(email);
         alu.setTelefone(telefone);
-        alu.setFoto(FuncaoAjuda.IconToBytes(foto) );
+        alu.setFoto(FuncaoAjuda.IconToBytes(foto));
         alu.setSexo(sexo);
         alu.setJaTreinou(jaTreinou);
         alu.setTipoPlano(plano);
@@ -83,6 +84,41 @@ public class GerenciadorDominio {
         return alu;
     }
     
+    public List<Aluno> listarAlunos(Class classe) throws HibernateException{ 
+        return generic_DAO.listar(classe);
+    }
+    
+    public List<Personal> listarPersonal(Class classe) throws HibernateException{ 
+        return generic_DAO.listar(classe);
+    }
+    
+    public Personal inserirPersonal(String nome, Date dataNasc, String cpf, String telefone, Icon foto, String email, char sexo, String cref){
+               
+        Personal perso = new Personal (nome, dataNasc, cpf, telefone, FuncaoAjuda.IconToBytes(foto), email, sexo, cref);;
+        
+        personal_DAO.cadastrar(perso);
+        
+        return perso;
+    }
+    
+    public Personal alterarPersonal(Personal perso, String nome, String cpf, String telefone, Icon foto, String email, String cref){
+       
+       perso.setNome(nome);
+       perso.setCpf(cpf);
+       perso.setTelefone(telefone);
+       perso.setFoto(FuncaoAjuda.IconToBytes(foto));
+       perso.seteMail(email);
+       perso.setNumeracaoCREF(cref);
+       
+        
+       personal_DAO.alterar(perso);
+        
+       return perso; 
+    }
+    
+    public void excluir (Object obj) throws HibernateException{
+        generic_DAO.excluir(obj);
+    }
     
     public static FichaAluno fichaPredefinida(String tipo) {
         

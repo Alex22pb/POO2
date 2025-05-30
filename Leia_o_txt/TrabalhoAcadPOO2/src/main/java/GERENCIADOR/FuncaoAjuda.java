@@ -14,9 +14,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
+import javax.swing.JComboBox;
 import org.json.JSONObject;
 
 /**
@@ -58,6 +61,11 @@ public class FuncaoAjuda {
 //        return ender;
 //    }
 //    
+    
+    public static void carregarCombo(JComboBox combo, List lista){
+        combo.setModel(new DefaultComboBoxModel(lista.toArray()));
+    }
+    
     public static boolean isCPF(String parcpf) {
         if (parcpf == null) {
             return false;

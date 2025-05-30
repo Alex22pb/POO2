@@ -6,6 +6,7 @@ package DOMAIN;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /* Classe da ficha do aluno
@@ -39,6 +40,7 @@ public class FichaAluno implements Serializable{
     private int maxRep;
     private int tempDescanso;
     private int serieExerc;
+    private Date diaCriacaoFicha = new Date();
     
     @Column(length = 500)
     private String observacoes;
@@ -160,6 +162,14 @@ public class FichaAluno implements Serializable{
         this.serieExerc = serieExerc;
     }
 
+    public Date getDiaCriacaoFicha() {
+        return diaCriacaoFicha;
+    }
+
+    public void setDiaCriacaoFicha(Date diaCriacaoFicha) {
+        this.diaCriacaoFicha = diaCriacaoFicha;
+    }
+
     public String getObservacoes() {
         return observacoes;
     }
@@ -168,5 +178,6 @@ public class FichaAluno implements Serializable{
         this.observacoes = observacoes;
     }
 
+    
     
 }
