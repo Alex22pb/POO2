@@ -1,4 +1,5 @@
 Viewer\TelaPesquisarFicha$1.class
+Viewer\TelaCadastroFicha$7.class
 Viewer\TelaPrincipal.class
 Viewer\TelaPesquisarAluno.class
 GERENCIADOR\GerenciadorIG.class
@@ -46,6 +47,7 @@ DOMAIN\Exercicios.class
 Viewer\TelaPrincipal$3.class
 DAO\GenericDAO.class
 Viewer\TelaPesquisarAluno$1.class
+Viewer\TelaCadastroFicha$6.class
 Viewer\TelaPrincipal$6.class
 GERENCIADOR\GerenciadorDominio.class
 DOMAIN\FichaAluno.class

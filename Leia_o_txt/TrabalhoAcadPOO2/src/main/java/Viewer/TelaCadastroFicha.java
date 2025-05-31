@@ -28,28 +28,15 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
 
     private GerenciadorIG genIG;
     private Map<Exercicios, JCheckBox> checkBoxListaExercicios = new HashMap<>();;
-    List <Exercicios> exerciciosSelecionados = new ArrayList<>();
+    private List <Exercicios> exerciciosSelecionados = new ArrayList<>();
     private FichaAluno fichaSelect;
+    private List<Exercicios> listaExercicios = new ArrayList<>();
     
     public TelaCadastroFicha(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
         this.genIG = newGerenIG;
         initComponents();
         this.setResizable(false);
-        
-        checkBoxListaExercicios.put(new Exercicios(0,"Agachamento Livre", null), agachamento);
-        checkBoxListaExercicios.put(new Exercicios(1,"Sulpino Reto com Halteres", null), sulpinoHalter);
-        checkBoxListaExercicios.put(new Exercicios(2,"Remada Baixa", null), remadabaixa);
-        checkBoxListaExercicios.put(new Exercicios(3,"Afundo Alternado", null), afundo);
-        checkBoxListaExercicios.put(new Exercicios(4,"Desenvolvimento Ombro", null), desenvolvimento);
-        checkBoxListaExercicios.put(new Exercicios(5,"Prancha Abdominal", null), prancha);
-        checkBoxListaExercicios.put(new Exercicios(6,"Leg Press 45°", null), legPress);
-        checkBoxListaExercicios.put(new Exercicios(7,"Sulpino Reto Barra", null), sulpinoReto);
-        checkBoxListaExercicios.put(new Exercicios(8,"Crucifixo Máquina", null), crucifixo);
-        checkBoxListaExercicios.put(new Exercicios(9,"Rosca Direta", null), roscaDireta);
-        checkBoxListaExercicios.put(new Exercicios(10,"Tríceps Corda", null), tricepsCorda);
-        checkBoxListaExercicios.put(new Exercicios(11,"Levantamento Terra", null), terraLevantar);
-        checkBoxListaExercicios.put(new Exercicios(12,"Barra Fixa", null), barraFixa);
     }
 
     /**
@@ -95,7 +82,6 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         labelNome = new javax.swing.JLabel();
         comboNomes = new javax.swing.JComboBox<>();
         labelNasci = new javax.swing.JLabel();
-        nasciFornated = new javax.swing.JFormattedTextField();
         labelAltura = new javax.swing.JLabel();
         txtGorduraCorp = new javax.swing.JTextField();
         labelPeso = new javax.swing.JLabel();
@@ -108,8 +94,14 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         labelIdade = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
+        nasciData = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Fichas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
         jPanel1.setAutoscrolls(true);
@@ -329,13 +321,13 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
 
         labelNome.setText("Nome: ");
 
-        labelNasci.setText("Data Nascimento");
+        comboNomes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNomesActionPerformed(evt);
+            }
+        });
 
-        try {
-            nasciFornated.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        labelNasci.setText("Data Nascimento");
 
         labelAltura.setText("Altura: ");
 
@@ -387,9 +379,9 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
                                 .addComponent(txtGorduraCorp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(labelNasci)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nasciFornated, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nasciData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
                                 .addComponent(labelIdade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,13 +438,14 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
                         .addComponent(buttonBuscarAluno)
                         .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNasci)
-                    .addComponent(nasciFornated, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelIdade)
-                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(comboTipoFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNasci)
+                        .addComponent(labelIdade)
+                        .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addComponent(comboTipoFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nasciData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAltura1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -505,7 +498,7 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
 
     private void comboTipoFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoFichaActionPerformed
         String tipoFicha = comboTipoFicha.getSelectedItem().toString();   
-        FichaAluno ficha = GerenciadorDominio.fichaPredefinida(tipoFicha);
+        FichaAluno ficha = GerenciadorDominio.fichaPredefinida(tipoFicha, listaExercicios);
         setarFicha(ficha);
     }//GEN-LAST:event_comboTipoFichaActionPerformed
 
@@ -567,6 +560,79 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
             limparEscolhas();
         } 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void comboNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomesActionPerformed
+        Aluno alu = (Aluno) comboNomes.getSelectedItem();
+        if(alu != null){
+            Date nasci = alu.getDataNasc();
+            nasciData.setDate(nasci);
+        }
+    }//GEN-LAST:event_comboNomesActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+
+        listaExercicios = GerenciadorIG.getMyInstance().getGerDom().listarExercicios(Exercicios.class);
+        
+        if (listaExercicios.isEmpty()) {
+            String[] nomesExercicios = {
+                "Agachamento Livre",
+                "Sulpino Reto com Halteres",
+                "Remada Baixa",
+                "Afundo Alternado",
+                "Desenvolvimento Ombro",
+                "Prancha Abdominal",
+                "Leg Press 45°",
+                "Sulpino Reto Barra",
+                "Crucifixo Máquina",
+                "Rosca Direta",
+                "Tríceps Corda",
+                "Levantamento Terra",
+                "Barra Fixa"
+            };
+            for (String nome : nomesExercicios) {
+                Exercicios exercicio = new Exercicios();
+                exercicio.setNomeExercicio(nome); // Usando o campo correto
+
+                try {
+                    GerenciadorIG.getMyInstance().getGerDom().inserirExercicios(exercicio);
+                } catch (HibernateException ex) {
+                    JOptionPane.showMessageDialog(this, ex, "Erro ao carregar os exercícios", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        } else {
+            for (Exercicios ex : listaExercicios) {
+                switch (ex.getNomeExercicio()) {
+                    case "Agachamento Livre" ->
+                        checkBoxListaExercicios.put(ex, agachamento);
+                    case "Sulpino Reto com Halteres" ->
+                        checkBoxListaExercicios.put(ex, sulpinoHalter);
+                    case "Remada Baixa" ->
+                        checkBoxListaExercicios.put(ex, remadabaixa);
+                    case "Afundo Alternado" ->
+                        checkBoxListaExercicios.put(ex, afundo);
+                    case "Desenvolvimento Ombro" ->
+                        checkBoxListaExercicios.put(ex, desenvolvimento);
+                    case "Prancha Abdominal" ->
+                        checkBoxListaExercicios.put(ex, prancha);
+                    case "Leg Press 45°" ->
+                        checkBoxListaExercicios.put(ex, legPress);
+                    case "Sulpino Reto Barra" ->
+                        checkBoxListaExercicios.put(ex, sulpinoReto);
+                    case "Crucifixo Máquina" ->
+                        checkBoxListaExercicios.put(ex, crucifixo);
+                    case "Rosca Direta" ->
+                        checkBoxListaExercicios.put(ex, roscaDireta);
+                    case "Tríceps Corda" ->
+                        checkBoxListaExercicios.put(ex, tricepsCorda);
+                    case "Levantamento Terra" ->
+                        checkBoxListaExercicios.put(ex, terraLevantar);
+                    case "Barra Fixa" ->
+                        checkBoxListaExercicios.put(ex, barraFixa);
+                }
+            }
+        }
+    }//GEN-LAST:event_formComponentShown
  
     private void setarFicha(FichaAluno fichaDoAluno){
        exerciciosSelecionados = fichaDoAluno.getExercicios();
@@ -592,9 +658,9 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     }
     
     private void limparEscolhas() {
-
+        
+        nasciData.setDate(null);
         comboNomes.removeAllItems();
-        nasciFornated.setText("");
         txtGorduraCorp.setText("");
         txtPeso.setText("");
         for (Map.Entry<Exercicios, JCheckBox> entry : checkBoxListaExercicios.entrySet()) {
@@ -617,7 +683,7 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
             labelNome.setForeground(Color.red);
         }
         
-        if(nasciFornated.getText().isEmpty()){
+        if(nasciData.getDate() == null){
             mensgErro = mensgErro + "Digite uma data de nascimento válido\n";
             labelNasci.setForeground(Color.red);
         }
@@ -700,7 +766,7 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelPeso;
     private javax.swing.JCheckBox legPress;
-    private javax.swing.JFormattedTextField nasciFornated;
+    private com.toedter.calendar.JDateChooser nasciData;
     private javax.swing.JCheckBox prancha;
     private javax.swing.JCheckBox remadabaixa;
     private javax.swing.JCheckBox roscaDireta;

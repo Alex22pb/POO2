@@ -5,6 +5,7 @@
 package GERENCIADOR;
 
 import DOMAIN.Endereco;
+import DOMAIN.Exercicios;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -138,5 +139,14 @@ public class FuncaoAjuda {
             return bFile;
         }
 
+    }
+    
+    public static Exercicios buscarExercicio(String nome, List<Exercicios> lista){
+        for(Exercicios exerc : lista){
+            if(exerc.getNomeExercicio().equals(nome)){
+                return exerc;
+            }
+        }
+        return null;
     }
 }

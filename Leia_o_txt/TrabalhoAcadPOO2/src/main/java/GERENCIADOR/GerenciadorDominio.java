@@ -150,11 +150,22 @@ public class GerenciadorDominio {
         return ficha;
     }
     
+    public Exercicios inserirExercicios(Exercicios exerc) throws HibernateException{ 
+        
+        generic_DAO.cadastrar(exerc);
+        
+        return exerc;
+    }
+    
+    public List<Exercicios> listarExercicios(Class classe) throws HibernateException{ 
+        return generic_DAO.listar(classe);
+    }
+    
     public void excluir (Object obj) throws HibernateException{
         generic_DAO.excluir(obj);
     }
     
-    public static FichaAluno fichaPredefinida(String tipo) {
+    public static FichaAluno fichaPredefinida(String tipo, List<Exercicios> listaExerc) {
         
         List<Exercicios> exerc = new ArrayList<>(); // Inicializa a lista corretamente
         int minRep = 0, maxRep = 0, temDesc = 0, serieExer = 0;
@@ -162,12 +173,12 @@ public class GerenciadorDominio {
 
         switch (tipo) {
             case "Emagrecimento":
-                exerc.add(new Exercicios(0,"Agachamento Livre", null));
-                exerc.add(new Exercicios(1,"Sulpino Reto com Halteres",null));
-                exerc.add(new Exercicios(2,"Remada Baixa",null));
-                exerc.add(new Exercicios(3,"Afundo Alternado", null));
-                exerc.add(new Exercicios(4,"Desenvolvimento Ombro", null));
-                exerc.add(new Exercicios(5,"Prancha Abdominal", null));
+                exerc.add(FuncaoAjuda.buscarExercicio("Agachamento Livre", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Sulpino Reto com Halteres", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Remada Baixa", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Afundo Alternado", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Desenvolvimento Ombro", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Prancha Abdominal", listaExerc));
                 minRep = 12;
                 maxRep = 15;
                 temDesc = 30;
@@ -175,12 +186,12 @@ public class GerenciadorDominio {
                 obs = "Pode intercalar com exercícios aeróbicos (40s de prancha).";
                 break;
             case "Hipertrofia":
-                exerc.add(new Exercicios(0,"Agachamento Livre", null));
-                exerc.add(new Exercicios(6,"Leg Press 45°", null));
-                exerc.add(new Exercicios(7,"Sulpino Reto Barra", null));
-                exerc.add(new Exercicios(8,"Crucifixo Máquina", null));
-                exerc.add(new Exercicios(9,"Rosca Direta", null));
-                exerc.add(new Exercicios(10,"Tríceps Corda", null));
+                exerc.add(FuncaoAjuda.buscarExercicio("Agachamento Livre", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Leg Press 45°", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Sulpino Reto Barra", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Crucifixo Máquina", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Rosca Direta", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Tríceps Corda", listaExerc));
                 minRep = 8;
                 maxRep = 12;
                 temDesc = 60;
@@ -188,12 +199,12 @@ public class GerenciadorDominio {
                 obs = "Aumentar a carga gradativamente e manter boa execução dos movimentos.";
                 break;
             case "Força/Potência":
-                exerc.add(new Exercicios(11,"Levantamento Terra", null));
-                exerc.add(new Exercicios(0,"Agachamento Livre", null));
-                exerc.add(new Exercicios(7,"Sulpino Reto Barra",null));
-                exerc.add(new Exercicios(4,"Desenvolvimento Ombro", null));
-                exerc.add(new Exercicios(12,"Barra Fixa", null));
-                exerc.add(new Exercicios(5,"Prancha Abdominal", null));
+                exerc.add(FuncaoAjuda.buscarExercicio("Levantamento Terra", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Agachamento Livre", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Sulpino Reto Barra", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Desenvolvimento Ombro", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Barra Fixa", listaExerc));
+                exerc.add(FuncaoAjuda.buscarExercicio("Prancha Abdominal", listaExerc));
                 minRep = 4;
                 maxRep = 6;
                 temDesc = 120;

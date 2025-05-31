@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -77,9 +80,9 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="labelNasci" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="nasciFornated" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="nasciData" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="labelIdade" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtIdade" min="-2" pref="101" max="-2" attributes="0"/>
@@ -152,13 +155,15 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelNasci" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nasciFornated" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelIdade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIdade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="comboTipoFicha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelNasci" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboTipoFicha" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="nasciData" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -595,6 +600,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboNomesActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -602,13 +610,6 @@
         <Component class="javax.swing.JLabel" name="labelNasci">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Nascimento"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="nasciFornated">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##/##/####" subtype="-1" type="5"/>
-            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAltura">
@@ -667,6 +668,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBusca">
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="nasciData">
         </Component>
       </SubComponents>
     </Container>
