@@ -306,10 +306,10 @@ public class TelaCadastroPersonal extends javax.swing.JDialog {
             if(personalSelect == null){
                 personalSelect = GerenciadorIG.getMyInstance().getGerDom().inserirPersonal(nome, dataNascimento, cpf, telefone, imagem, email, sexo, cref);
                 
-                JOptionPane.showMessageDialog(this, "Personal " + personalSelect.getIdPersonal()+ " inserido com sucesso.", "Cadastro de Aluno", JOptionPane.INFORMATION_MESSAGE); 
+                JOptionPane.showMessageDialog(this, "Personal " + personalSelect.getIdPersonal()+ " inserido com sucesso.", "Cadastro de Personal", JOptionPane.INFORMATION_MESSAGE); 
             }else{
                 GerenciadorIG.getMyInstance().getGerDom().alterarPersonal(personalSelect, nome, cpf, telefone, imagem, email, cref);
-                JOptionPane.showMessageDialog(this, "Personal " + personalSelect.getIdPersonal() + " inserido com sucesso.", "Cadastro de Aluno", JOptionPane.INFORMATION_MESSAGE); 
+                JOptionPane.showMessageDialog(this, "Personal " + personalSelect.getIdPersonal() + " inserido com sucesso.", "Cadastro de Personal", JOptionPane.INFORMATION_MESSAGE); 
             }
             
             limparEscolha();

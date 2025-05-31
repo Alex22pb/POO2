@@ -3,7 +3,6 @@ Viewer\TelaPrincipal.class
 Viewer\TelaPesquisarAluno.class
 GERENCIADOR\GerenciadorIG.class
 GERENCIADOR\TableModelVencimento.class
-DAO\enderecoDAO.class
 GERENCIADOR\TableModelPersonal.class
 Viewer\TelaPrincipal$5.class
 Viewer\TelaCadastroFicha$4.class
@@ -31,7 +30,6 @@ DAO\PersonalDAO.class
 Viewer\TelaCadastroUsuario.class
 Viewer\TelaCadastroAluno$1.class
 Viewer\TelaCadastroPersonal.class
-DAO\UsurarioDAO.class
 Viewer\TelaCadastroUsuario$1.class
 DOMAIN\Endereco.class
 Viewer\TelaCadastroFicha$2.class
@@ -55,7 +53,6 @@ GERENCIADOR\TableModelAluno.class
 Viewer\TelaPesquisarPersonal.class
 Viewer\TelaLogin$1.class
 Viewer\TelaPesquisarFicha$4.class
-DAO\ExerciciosDAO.class
 Viewer\TelaPrincipal$2.class
 Viewer\TelaCadastroAluno.class
 Viewer\TelaCadastroUsuario$3.class

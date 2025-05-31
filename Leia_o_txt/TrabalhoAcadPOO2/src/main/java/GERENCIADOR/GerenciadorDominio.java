@@ -5,16 +5,15 @@
 package GERENCIADOR;
 
 import DAO.AlunoDAO;
-import DAO.ExerciciosDAO;
 import DAO.FichaAlunoDAO;
 import DAO.GenericDAO;
 import DAO.PersonalDAO;
-import DAO.enderecoDAO;
 import DOMAIN.Aluno;
 import DOMAIN.Exercicios;
 import DOMAIN.FichaAluno;
 import DOMAIN.Endereco;
 import DOMAIN.Personal;
+import DOMAIN.Usuario;
 import dao.ConexaoHibernate;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,9 +35,7 @@ public class GerenciadorDominio {
     
     private AlunoDAO aluno_DAO;
     private FichaAlunoDAO fichaAluno_DAO;
-    private enderecoDAO endereco_DAO;
     private PersonalDAO personal_DAO;
-    private ExerciciosDAO exercicio_DAO;
     private GenericDAO generic_DAO;
   
     public GerenciadorDominio(){
@@ -46,19 +43,26 @@ public class GerenciadorDominio {
         
         aluno_DAO = new AlunoDAO();
         fichaAluno_DAO = new FichaAlunoDAO();
-        endereco_DAO = new enderecoDAO();
         personal_DAO = new PersonalDAO();
-        exercicio_DAO = new ExerciciosDAO();
         generic_DAO = new GenericDAO();
     }   
    
+     public Usuario inserirUsuario(String nome, Date dataNasc, String cpf, String telefone, String userName, String senha){
+        
+        Usuario user = new Usuario (userName, senha, dataNasc, nome, cpf, telefone);
+                
+        generic_DAO.cadastrar(user);
+        
+        return user;
+    }
+    
     public Aluno inserirAluno(String nome, Date dataNasc, String cpf, String cep, String cidade, String bairro, String rua, 
             String email, String telefone, Icon foto, char sexo, boolean jaTreinou, String plano, int diaVencimento, Date dataCadastro, Personal perso){
         
         Aluno alu = new Aluno (perso, nome, cpf, dataNasc, sexo, telefone, email, jaTreinou, plano, dataCadastro, 
                 diaVencimento, FuncaoAjuda.IconToBytes(foto), cep, bairro, rua, cidade);
         
-        aluno_DAO.cadastrar(alu);
+        generic_DAO.cadastrar(alu);
         
         return alu;
     }
@@ -80,7 +84,7 @@ public class GerenciadorDominio {
         alu.setTipoPlano(plano);
         alu.setDiaDoVencimento(diaVencimento);
         
-        aluno_DAO.alterar(alu);
+        generic_DAO.alterar(alu);
         return alu;
     }
     
@@ -96,7 +100,7 @@ public class GerenciadorDominio {
                
         Personal perso = new Personal (nome, dataNasc, cpf, telefone, FuncaoAjuda.IconToBytes(foto), email, sexo, cref);;
         
-        personal_DAO.cadastrar(perso);
+        generic_DAO.cadastrar(perso);
         
         return perso;
     }
@@ -111,13 +115,39 @@ public class GerenciadorDominio {
        perso.setNumeracaoCREF(cref);
        
         
-       personal_DAO.alterar(perso);
+       generic_DAO.alterar(perso);
         
        return perso; 
     }
     
     public List<FichaAluno> listarFicha(Class classe) throws HibernateException{ 
         return generic_DAO.listar(classe);
+    }
+    
+    public FichaAluno inserirFicha(Aluno alu, String obj, List<Exercicios> listExer, double pocentoGord, double peso, double altura, int minRep, int maxRep, int descanso, int quantSerie, Date data, String obs){
+        FichaAluno ficha = new FichaAluno(alu, obj, listExer, pocentoGord, peso, altura, minRep, maxRep, descanso, quantSerie, data, obs);
+        
+        generic_DAO.cadastrar(ficha);
+        
+        return ficha;
+    }
+    
+    public FichaAluno alterarFicha(FichaAluno ficha, String obj, List<Exercicios> listExer, double pocentoGord, double peso, double altura, int minRep, int maxRep, int descanso, int quantSerie, String obs){
+        
+        ficha.setTipoFicha(obj);
+        ficha.setExercicios(listExer);
+        ficha.setPorcentagemGordura(pocentoGord);
+        ficha.setPeso(peso);
+        ficha.setAltura(altura);
+        ficha.setMinRep(minRep);
+        ficha.setMaxRep(maxRep);
+        ficha.setTempDescanso(descanso);
+        ficha.setSerieExerc(quantSerie);
+        ficha.setObservacoes(obs);
+        
+        generic_DAO.alterar(ficha);
+        
+        return ficha;
     }
     
     public void excluir (Object obj) throws HibernateException{
