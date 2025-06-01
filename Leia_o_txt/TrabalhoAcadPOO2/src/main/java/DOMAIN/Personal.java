@@ -21,7 +21,7 @@ public class Personal implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPersonal;
     
-    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personal")
     private List<Aluno> aluno = new ArrayList<>();
         
     @Column(length = 60, nullable = false) 

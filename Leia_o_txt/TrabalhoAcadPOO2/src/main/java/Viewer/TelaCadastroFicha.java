@@ -672,6 +672,8 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         spinnerMinRep.setValue(4);
         comboDescanso.setSelectedItem("30");
         textAreaObs.setText("");
+        txtIdade.setText("");
+        txtAltura1.setText("");
     }  
     
     

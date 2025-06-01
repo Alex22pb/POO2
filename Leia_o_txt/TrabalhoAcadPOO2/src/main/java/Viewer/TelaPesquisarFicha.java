@@ -192,7 +192,19 @@ public class TelaPesquisarFicha extends javax.swing.JDialog {
     }//GEN-LAST:event_buscarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-        // TODO add your handling code here:
+         try{
+            int linha = tblFicha.getSelectedRow();
+            if(linha >= 0){
+                FichaAluno ficha = (FichaAluno) tableFicha.getItem(linha);
+                GerenciadorIG.getMyInstance().getGerDom().excluir(ficha);
+                JOptionPane.showMessageDialog(this, "Ficha excluida com sucesso..", "Pesquisar Ficha", JOptionPane.INFORMATION_MESSAGE);
+
+            }else{
+                JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Ficha", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao excluir ficha! " + ex, "Pesquisar Ficha", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_excluirActionPerformed
 
     private void criarNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarNovaActionPerformed

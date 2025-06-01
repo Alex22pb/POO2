@@ -21,7 +21,7 @@ public class Aluno implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdAluno;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_Personal")
     private Personal personal;
 

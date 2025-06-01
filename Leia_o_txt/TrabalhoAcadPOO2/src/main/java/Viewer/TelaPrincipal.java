@@ -4,7 +4,13 @@
  */
 package Viewer;
 
+import DOMAIN.Aluno;
 import GERENCIADOR.GerenciadorIG;
+import GERENCIADOR.TableModelAniversario;
+import GERENCIADOR.TableModelVencimento;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 
 //Ao impletar o hibernate, a ideia é que ao iniciar o sistema ele coloque todos os aniversariantes do mês
@@ -18,10 +24,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private GerenciadorIG genIG;
     
+    private TableModelVencimento tableVencimento;
+    private TableModelAniversario tableAniversario;
+    
     public TelaPrincipal(GerenciadorIG newGerenIG){
         genIG = newGerenIG;
         initComponents();
         this.setResizable(false);
+        
+        
+        tableVencimento = new TableModelVencimento();
+        tblVencimento.setModel(tableVencimento); 
+        
+        tableAniversario = new TableModelAniversario();
+        tblAniversariantes.setModel(tableAniversario); 
     }
 
     /**
@@ -37,9 +53,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableVencimento = new javax.swing.JTable();
+        tblVencimento = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAniversariantes = new javax.swing.JTable();
+        tblAniversariantes = new javax.swing.JTable();
         labelFoto = new javax.swing.JLabel();
         MenuBarraPrinci = new javax.swing.JMenuBar();
         Cadastros = new javax.swing.JMenu();
@@ -52,6 +68,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuAluno = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -60,7 +81,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Aniversariantes:");
 
-        tableVencimento.setModel(new javax.swing.table.DefaultTableModel(
+        tblVencimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -68,9 +89,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 "Nome", "Data de Vencimento"
             }
         ));
-        jScrollPane3.setViewportView(tableVencimento);
+        jScrollPane3.setViewportView(tblVencimento);
 
-        tableAniversariantes.setModel(new javax.swing.table.DefaultTableModel(
+        tblAniversariantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -78,7 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 "Nome", "Data do Aniversário"
             }
         ));
-        jScrollPane1.setViewportView(tableAniversariantes);
+        jScrollPane1.setViewportView(tblAniversariantes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,6 +229,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         GerenciadorIG.getMyInstance().abrirTelaPesquisarAluno();
     }//GEN-LAST:event_menuAlunoActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        try{
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            
+            if(listaAluno.size() > 0){
+                tableAniversario.setLista(listaAluno);
+            }else{
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+            }
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar aniversariantes! " + ex, "Tela Principal", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        try{
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            
+            if(listaAluno.size() > 0){
+                tableVencimento.setLista(listaAluno);
+            }else{
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+            }
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar vencimentos! " + ex, "Tela Principal", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formComponentShown
+
     /**
      * @param args the command line arguments
      */
@@ -228,7 +277,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuAluno;
     private javax.swing.JMenuItem menuFicha;
     private javax.swing.JMenuItem menuPersonal;
-    private javax.swing.JTable tableAniversariantes;
-    private javax.swing.JTable tableVencimento;
+    private javax.swing.JTable tblAniversariantes;
+    private javax.swing.JTable tblVencimento;
     // End of variables declaration//GEN-END:variables
 }

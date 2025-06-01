@@ -217,13 +217,13 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
             if(linha >= 0){
                 Aluno alu = (Aluno) tableAluno.getItem(linha);
                 GerenciadorIG.getMyInstance().getGerDom().excluir(alu);
-                JOptionPane.showMessageDialog(this, "Aluno excluido com sucesso..", "Pesquisar Cliente", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Aluno excluido com sucesso..", "Pesquisar Aluno", JOptionPane.INFORMATION_MESSAGE);
 
             }else{
-                JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Cliente", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
             }
         }catch (HibernateException ex){
-            JOptionPane.showMessageDialog(this, "ERRO ao excluir cliente! " + ex, "Pesquisar Cliente", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERRO ao excluir aluno! " + ex, "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_excluirActionPerformed
 

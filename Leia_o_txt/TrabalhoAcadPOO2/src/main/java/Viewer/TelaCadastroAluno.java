@@ -600,7 +600,8 @@ public class TelaCadastroAluno extends javax.swing.JDialog {
         txtCidade.setText("");
         dateCadastro.setDate(null);
         txtDiaVencimento.setText("");
-        
+        txtBairro1.setText("");
+        cepFormated.setText("");
     }
     
     private void colocarFoto(){//COLOCAR IMAGEM

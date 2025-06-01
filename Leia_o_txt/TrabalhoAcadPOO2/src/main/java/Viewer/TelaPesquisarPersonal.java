@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+
 import DOMAIN.Personal;
 import GERENCIADOR.GerenciadorIG;
 import GERENCIADOR.TableModelPersonal;
@@ -97,6 +98,11 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
 
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-lixo-12.png"))); // NOI18N
         excluir.setText("Excluir");
+        excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,6 +181,22 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
         // Ao ser integrado o sistema com banco, ele ira buscar os alunos com o nome que a pessoa digitou e listar na JTable
         // e ao clicar no botão selecionar, jogar os dados da pessoa que ele quer para o cadastro de ficha.
     }//GEN-LAST:event_buttonBuscarActionPerformed
+
+    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+         try{
+            int linha = tblPersonal.getSelectedRow();
+            if(linha >= 0){
+                Personal perso = (Personal) tablePersonal.getItem(linha);
+                GerenciadorIG.getMyInstance().getGerDom().excluir(perso);
+                JOptionPane.showMessageDialog(this, "Personal excluido com sucesso..", "Pesquisar Personal", JOptionPane.INFORMATION_MESSAGE);
+
+            }else{
+                JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Personal", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao excluir personal! " + ex, "Pesquisar Personal", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_excluirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -29,6 +29,7 @@ Viewer\TelaCadastroPersonal$1.class
 Viewer\TelaLogin$2.class
 DAO\PersonalDAO.class
 Viewer\TelaCadastroUsuario.class
+Viewer\TelaPrincipal$7.class
 Viewer\TelaCadastroAluno$1.class
 Viewer\TelaCadastroPersonal.class
 Viewer\TelaCadastroUsuario$1.class
@@ -58,6 +59,7 @@ Viewer\TelaPesquisarFicha$4.class
 Viewer\TelaPrincipal$2.class
 Viewer\TelaCadastroAluno.class
 Viewer\TelaCadastroUsuario$3.class
+Viewer\TelaPesquisarPersonal$2.class
 Viewer\TelaCadastroFicha$3.class
 Viewer\TelaCadastroPersonal$3.class
 Viewer\TelaCadastroAluno$3.class

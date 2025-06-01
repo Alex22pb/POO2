@@ -26,7 +26,7 @@ public class FichaAluno implements Serializable{
     @Column(length = 20)
     private String tipoFicha;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
         name = "ficha_exercicios",
         joinColumns = @JoinColumn(name = "ficha_id"),
