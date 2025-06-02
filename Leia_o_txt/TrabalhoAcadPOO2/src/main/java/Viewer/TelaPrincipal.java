@@ -62,6 +62,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastroAluni = new javax.swing.JMenuItem();
         CadastroFicha = new javax.swing.JMenuItem();
         CadastroPersonal = new javax.swing.JMenuItem();
+        menuPagamento = new javax.swing.JMenuItem();
         MenuBarPesqusiar = new javax.swing.JMenu();
         menuPersonal = new javax.swing.JMenuItem();
         menuFicha = new javax.swing.JMenuItem();
@@ -133,6 +134,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Cadastros.setText("Cadastro");
+        Cadastros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrosActionPerformed(evt);
+            }
+        });
 
         CadastroAluni.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         CadastroAluni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-cadastro-12.png"))); // NOI18N
@@ -163,6 +169,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         Cadastros.add(CadastroPersonal);
+
+        menuPagamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuPagamento.setText("Cadastrar Pagamento");
+        menuPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPagamentoActionPerformed(evt);
+            }
+        });
+        Cadastros.add(menuPagamento);
 
         MenuBarraPrinci.add(Cadastros);
 
@@ -257,6 +272,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formComponentShown
 
+    private void menuPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPagamentoActionPerformed
+        GerenciadorIG.getMyInstance().abrirTelaPagamento();
+    }//GEN-LAST:event_menuPagamentoActionPerformed
+
+    private void CadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CadastrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +299,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel labelFoto;
     private javax.swing.JMenuItem menuAluno;
     private javax.swing.JMenuItem menuFicha;
+    private javax.swing.JMenuItem menuPagamento;
     private javax.swing.JMenuItem menuPersonal;
     private javax.swing.JTable tblAniversariantes;
     private javax.swing.JTable tblVencimento;

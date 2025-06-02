@@ -8,9 +8,11 @@ GERENCIADOR\TableModelPersonal.class
 Viewer\TelaPrincipal$5.class
 Viewer\TelaCadastroFicha$4.class
 DAO\AlunoDAO.class
+Viewer\TelaPrincipal$8.class
 Viewer\TelaPesquisarAluno$3.class
 Viewer\TelaCadastroAluno$2.class
 Viewer\TelaLogin$3.class
+Viewer\TelaPagamento$3.class
 DAO\ConexaoHibernate.class
 Viewer\TelaCadastroUsuario$2.class
 Viewer\TelaCadastroPersonal$4.class
@@ -25,6 +27,7 @@ Viewer\TelaCadastroAluno$5.class
 Viewer\TelaCadastroFicha$1.class
 DAO\FichaAlunoDAO.class
 DOMAIN\Usuario.class
+Viewer\TelaPagamento.class
 Viewer\TelaCadastroPersonal$1.class
 Viewer\TelaLogin$2.class
 DAO\PersonalDAO.class
@@ -33,6 +36,7 @@ Viewer\TelaPrincipal$7.class
 Viewer\TelaCadastroAluno$1.class
 Viewer\TelaCadastroPersonal.class
 Viewer\TelaCadastroUsuario$1.class
+Viewer\TelaPagamento$2.class
 DOMAIN\Endereco.class
 Viewer\TelaCadastroFicha$2.class
 Viewer\TelaCadastroFicha$5.class
@@ -45,6 +49,7 @@ Viewer\TelaPesquisarPersonal$1.class
 GERENCIADOR\TableModelAniversario.class
 Viewer\TelaCadastroPersonal$2.class
 DOMAIN\Exercicios.class
+GERENCIADOR\TableModelPagamento.class
 Viewer\TelaPrincipal$3.class
 DAO\GenericDAO.class
 Viewer\TelaPesquisarAluno$1.class
@@ -55,7 +60,9 @@ DOMAIN\FichaAluno.class
 GERENCIADOR\TableModelAluno.class
 Viewer\TelaPesquisarPersonal.class
 Viewer\TelaLogin$1.class
+Viewer\TelaPagamento$1.class
 Viewer\TelaPesquisarFicha$4.class
+Viewer\TelaPrincipal$9.class
 Viewer\TelaPrincipal$2.class
 Viewer\TelaCadastroAluno.class
 Viewer\TelaCadastroUsuario$3.class
