@@ -12,6 +12,7 @@ import DOMAIN.Aluno;
 import DOMAIN.Exercicios;
 import DOMAIN.FichaAluno;
 import DOMAIN.Endereco;
+import DOMAIN.Pagamento;
 import DOMAIN.Personal;
 import DOMAIN.Usuario;
 import dao.ConexaoHibernate;
@@ -163,6 +164,19 @@ public class GerenciadorDominio {
     
     public void excluir (Object obj) throws HibernateException{
         generic_DAO.excluir(obj);
+    }
+    
+     public Pagamento inserirPagamento(Aluno alu, double valor, Date data){
+        
+        Pagamento pagar = new Pagamento (alu, valor, data);
+        
+        generic_DAO.cadastrar(pagar);
+        
+        return pagar;
+    }
+    
+    public List<Pagamento> listarPagamento(Class classe) throws HibernateException{ 
+        return generic_DAO.listar(classe);
     }
     
     public static FichaAluno fichaPredefinida(String tipo, List<Exercicios> listaExerc) {

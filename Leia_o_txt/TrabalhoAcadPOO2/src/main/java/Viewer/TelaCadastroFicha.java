@@ -29,7 +29,7 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     private GerenciadorIG genIG;
     private Map<Exercicios, JCheckBox> checkBoxListaExercicios = new HashMap<>();;
     private List <Exercicios> exerciciosSelecionados = new ArrayList<>();
-    private FichaAluno fichaSelect;
+    private FichaAluno fichaSelect = null;
     private List<Exercicios> listaExercicios = new ArrayList<>();
     
     public TelaCadastroFicha(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {

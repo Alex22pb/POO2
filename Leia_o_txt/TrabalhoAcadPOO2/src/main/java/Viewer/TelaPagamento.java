@@ -5,10 +5,15 @@
 package Viewer;
 
 import DOMAIN.Aluno;
+import DOMAIN.FichaAluno;
+import DOMAIN.Pagamento;
 import GERENCIADOR.FuncaoAjuda;
 import GERENCIADOR.GerenciadorIG;
 import GERENCIADOR.TableModelPagamento;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -17,7 +22,8 @@ import java.util.List;
 public class TelaPagamento extends javax.swing.JDialog {
 
     private GerenciadorIG genIG;
-    
+    private Pagamento pagar = null;
+
     private TableModelPagamento tablePagamento;
     
     public TelaPagamento(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
@@ -232,7 +238,21 @@ public class TelaPagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
-        // TODO add your handling code here:
+        Aluno alu = (Aluno) comboNomes.getSelectedItem();
+        
+        comboPlano.setSelectedItem(alu.getTipoPlano());
+        
+        double valor = Double.parseDouble(comboValor.getSelectedItem().toString());
+        
+        verificarValor((String) comboPlano.getSelectedItem());
+        
+        Date date = jDateChooser1.getDate();
+        
+
+        pagar = GerenciadorIG.getMyInstance().getGerDom().inserirPagamento(alu, valor, date);
+        JOptionPane.showMessageDialog(this, "Pagamento " + pagar.getId_pagamento() + " inserido com sucesso.", "Cadastro de Pagamento", JOptionPane.INFORMATION_MESSAGE);
+        
+        carregarPagamento();
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonBuscarNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarNomesActionPerformed
@@ -241,9 +261,33 @@ public class TelaPagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonBuscarNomesActionPerformed
 
     private void comboNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomesActionPerformed
-        // TODO add your handling code here:
+        carregarPagamento();
     }//GEN-LAST:event_comboNomesActionPerformed
 
+    private void verificarValor (String plano){
+        if(plano.equals("Mensalidade")){
+            comboValor.setSelectedItem("100");
+        }else if(plano.equals("Anual")){
+            comboValor.setSelectedItem("90");
+        }else{
+            comboValor.setSelectedItem("95");
+        }       
+    }
+    
+    private void carregarPagamento(){
+        try {
+            List<Pagamento> listaPagamento = GerenciadorIG.getMyInstance().getGerDom().listarPagamento(Pagamento.class);
+
+            if (listaPagamento.size() > 0) {
+                tablePagamento.setLista(listaPagamento);
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+            }
+
+        } catch (HibernateException ex) {
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar histórico de pagamento! " + ex, "Pesquisar Pagamento", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * @param args the command line arguments
      */
