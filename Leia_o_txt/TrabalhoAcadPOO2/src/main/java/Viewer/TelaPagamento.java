@@ -51,7 +51,6 @@ public class TelaPagamento extends javax.swing.JDialog {
         txtBuscaNome = new javax.swing.JTextField();
         buttonBuscarNomes = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        comboPlano = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         comboValor = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
@@ -61,6 +60,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         cancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        comboPlano = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,11 +86,10 @@ public class TelaPagamento extends javax.swing.JDialog {
 
         jLabel2.setText("Tipo do Plano:");
 
-        comboPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensalidade", "Anual", "Trimestral" }));
-
         jLabel3.setText("Valor a Pagar:");
 
         comboValor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "100", "95", "90" }));
+        comboValor.setEnabled(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pagamento Já Efetuados"));
 
@@ -142,6 +141,9 @@ public class TelaPagamento extends javax.swing.JDialog {
 
         jLabel5.setText("Dia do Pagamento:");
 
+        comboPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensalidade", "Anual", "Trimestral" }));
+        comboPlano.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -160,8 +162,8 @@ public class TelaPagamento extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,9 +199,9 @@ public class TelaPagamento extends javax.swing.JDialog {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(comboPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(comboPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,15 +242,10 @@ public class TelaPagamento extends javax.swing.JDialog {
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         Aluno alu = (Aluno) comboNomes.getSelectedItem();
         
-        comboPlano.setSelectedItem(alu.getTipoPlano());
-        
         double valor = Double.parseDouble(comboValor.getSelectedItem().toString());
-        
-        verificarValor((String) comboPlano.getSelectedItem());
-        
+                
         Date date = jDateChooser1.getDate();
         
-
         pagar = GerenciadorIG.getMyInstance().getGerDom().inserirPagamento(alu, valor, date);
         JOptionPane.showMessageDialog(this, "Pagamento " + pagar.getId_pagamento() + " inserido com sucesso.", "Cadastro de Pagamento", JOptionPane.INFORMATION_MESSAGE);
         
@@ -261,17 +258,25 @@ public class TelaPagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonBuscarNomesActionPerformed
 
     private void comboNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomesActionPerformed
+        Aluno alu = (Aluno) comboNomes.getSelectedItem();
+
+        comboPlano.setSelectedItem(alu.getTipoPlano());
+        
+        verificarValor();
+        
         carregarPagamento();
     }//GEN-LAST:event_comboNomesActionPerformed
 
-    private void verificarValor (String plano){
-        if(plano.equals("Mensalidade")){
+    private void verificarValor(){
+         String tipoPlano = (String) comboPlano.getSelectedItem();
+
+        if (tipoPlano.equals("Mensalidade")) {
             comboValor.setSelectedItem("100");
-        }else if(plano.equals("Anual")){
+        } else if (tipoPlano.equals("Anual")) {
             comboValor.setSelectedItem("90");
-        }else{
+        } else {
             comboValor.setSelectedItem("95");
-        }       
+        }   
     }
     
     private void carregarPagamento(){

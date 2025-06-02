@@ -40,7 +40,7 @@ public class Aluno implements Serializable{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
-    private Endereco endereco; //ERRO
+    private Endereco endereco;
     
     @Column (length = 20)
     private String telefone;
