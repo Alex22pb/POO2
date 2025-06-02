@@ -9,6 +9,7 @@ import Viewer.TelaCadastroFicha;
 import Viewer.TelaCadastroPersonal;
 import Viewer.TelaCadastroUsuario;
 import Viewer.TelaLogin;
+import Viewer.TelaPagamento;
 import Viewer.TelaPesquisarAluno;
 import Viewer.TelaPesquisarFicha;
 import Viewer.TelaPesquisarPersonal;
@@ -33,6 +34,7 @@ public class GerenciadorIG {
     private TelaCadastroPersonal telaPersonal = null;
     private TelaPesquisarPersonal telaPesquisaPersonal = null;
     private TelaPesquisarFicha telaPesquisarFicha = null;
+    private TelaPagamento telaPagar = null;
     private GerenciadorDominio gerDom;
 
     private static final GerenciadorIG myInstance = new GerenciadorIG();
@@ -108,6 +110,10 @@ public class GerenciadorIG {
     public void abrirTelaUsuario(){
         abrirJanelaDlg(telaInicio, telaUsuario, TelaCadastroUsuario.class);
     }   
+    
+    public void abrirTelaPagamento(){
+       abrirJanelaDlg(telaPrincipal, telaPagar, TelaPagamento.class);
+    } 
     
     public boolean verificarUsuarioSenha(String usuario, String senha) {
         if (usuario.equals("admin") && senha.equals("admin")) {
