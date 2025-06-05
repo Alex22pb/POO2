@@ -202,8 +202,14 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void editarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDadosActionPerformed
-        this.setVisible(false);
-        GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
+        int linha =tblAluno.getSelectedRow();
+        if(linha >= 0){
+            alunoSelect = (Aluno) tableAluno.getItem(linha);
+            alunoSelect = GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_editarDadosActionPerformed
 
     private void criarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarFichaActionPerformed
@@ -227,9 +233,9 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_excluirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public Aluno getAluno() {
+        return alunoSelect;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

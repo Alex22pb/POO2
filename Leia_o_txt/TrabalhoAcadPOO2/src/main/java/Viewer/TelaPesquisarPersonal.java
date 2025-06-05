@@ -19,6 +19,7 @@ import org.hibernate.HibernateException;
 public class TelaPesquisarPersonal extends javax.swing.JDialog {
 
     private TableModelPersonal tablePersonal;
+    //private persoSelect = null;
     
     public TelaPesquisarPersonal(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
@@ -95,6 +96,11 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
 
         editarDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-editar-usuário-masculino-12.png"))); // NOI18N
         editarDados.setText("Editar Dados");
+        editarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarDadosActionPerformed(evt);
+            }
+        });
 
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-lixo-12.png"))); // NOI18N
         excluir.setText("Excluir");
@@ -197,6 +203,17 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "ERRO ao excluir personal! " + ex, "Pesquisar Personal", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_excluirActionPerformed
+
+    private void editarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDadosActionPerformed
+        int linha = tblPersonal.getSelectedRow();
+        if(linha >= 0){
+            palunoSelect = (Personal) tablePersonal.getItem(linha);
+            alunoSelect = GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_editarDadosActionPerformed
 
     /**
      * @param args the command line arguments

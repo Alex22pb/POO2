@@ -4,6 +4,9 @@
  */
 package GERENCIADOR;
 
+import DOMAIN.Aluno;
+import DOMAIN.FichaAluno;
+import DOMAIN.Personal;
 import Viewer.TelaCadastroAluno;
 import Viewer.TelaCadastroFicha;
 import Viewer.TelaCadastroPersonal;
@@ -83,15 +86,16 @@ public class GerenciadorIG {
         telaInicio.setVisible(false);
     }
     
-    public void abrirTelaCadastroAluno(){
+    public Aluno abrirTelaCadastroAluno(){
         abrirJanelaDlg(telaPrincipal, telaAluno, TelaCadastroAluno.class);
+        return telaPesqAluno.getAluno();
     }
     
     public void abrirTelaCadastroFicha(){
         abrirJanelaDlg(telaPrincipal, telaFicha, TelaCadastroFicha.class);
     }
     
-    public void abrirTelaCadastroPersonal(){
+    public Personal abrirTelaCadastroPersonal(){
         abrirJanelaDlg(telaPrincipal, telaPersonal, TelaCadastroPersonal.class);
     }
     
