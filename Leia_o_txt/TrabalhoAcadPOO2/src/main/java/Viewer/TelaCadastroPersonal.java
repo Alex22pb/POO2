@@ -66,6 +66,11 @@ public class TelaCadastroPersonal extends javax.swing.JDialog {
         cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
@@ -330,9 +335,13 @@ public class TelaCadastroPersonal extends javax.swing.JDialog {
         cancelar.addActionListener(e -> dispose());
     }//GEN-LAST:event_cancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        personalSelect = GerenciadorIG.getMyInstance().getPersonal();
+            if (personalSelect != null) {
+            preencherCampo(personalSelect);
+        }
+    }//GEN-LAST:event_formComponentShown
+
 
     private boolean validarCampos(){
         String mensgErro = "";
@@ -418,6 +427,28 @@ public class TelaCadastroPersonal extends javax.swing.JDialog {
         foto.setIcon(imagem);
     }
 
+    
+    private void preencherCampo(Personal perso){
+        if(perso != null){
+        txtNome.setText(perso.getNome());
+        txtEmail.setText(perso.geteMail());
+        dateNasc.setDate(perso.getDateNasc());
+        formatedCPF.setText(perso.getCpf());
+        fornatedTelefone.setText(perso.getTelefone());
+        txtCREF.setText(perso.getNumeracaoCREF());
+        if(perso.getFoto() != null){
+            ImageIcon imagem = new ImageIcon(perso.getFoto());
+            mostrarFoto(imagem);
+        }
+        if(perso.getSexo() == 'M'){
+            jRadioButton1.setSelected(true);
+        }else{
+            jRadioButton2.setSelected(true);
+        }
+        }
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastrar;
     private javax.swing.JButton cancelar;

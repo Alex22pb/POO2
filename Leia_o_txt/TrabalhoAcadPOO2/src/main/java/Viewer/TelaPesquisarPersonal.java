@@ -5,6 +5,7 @@
 package Viewer;
 
 
+import DOMAIN.Aluno;
 import DOMAIN.Personal;
 import GERENCIADOR.GerenciadorIG;
 import GERENCIADOR.TableModelPersonal;
@@ -19,7 +20,7 @@ import org.hibernate.HibernateException;
 public class TelaPesquisarPersonal extends javax.swing.JDialog {
 
     private TableModelPersonal tablePersonal;
-    //private persoSelect = null;
+    private Personal persoSelect = null;
     
     public TelaPesquisarPersonal(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
@@ -184,8 +185,6 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
         }catch (HibernateException ex){
             JOptionPane.showMessageDialog(this, "ERRO ao pesquisar personal! " + ex, "Pesquisar Personal", JOptionPane.ERROR_MESSAGE);
         }
-        // Ao ser integrado o sistema com banco, ele ira buscar os alunos com o nome que a pessoa digitou e listar na JTable
-        // e ao clicar no botão selecionar, jogar os dados da pessoa que ele quer para o cadastro de ficha.
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
@@ -194,6 +193,7 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
             if(linha >= 0){
                 Personal perso = (Personal) tablePersonal.getItem(linha);
                 GerenciadorIG.getMyInstance().getGerDom().excluir(perso);
+                limparPersonalAlunos(perso);
                 JOptionPane.showMessageDialog(this, "Personal excluido com sucesso..", "Pesquisar Personal", JOptionPane.INFORMATION_MESSAGE);
 
             }else{
@@ -207,17 +207,27 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
     private void editarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDadosActionPerformed
         int linha = tblPersonal.getSelectedRow();
         if(linha >= 0){
-            palunoSelect = (Personal) tablePersonal.getItem(linha);
-            alunoSelect = GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
+            persoSelect = (Personal) tablePersonal.getItem(linha);
+            GerenciadorIG.getMyInstance().setPersonal(persoSelect);
+            GerenciadorIG.getMyInstance().abrirTelaCadastroPersonal();
             this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editarDadosActionPerformed
+    
+    private void limparPersonalAlunos(Personal personal) {
+        List<Aluno> listaAlunos = personal.getAluno();
 
-    /**
-     * @param args the command line arguments
-     */
+        for (Aluno aluno : listaAlunos) {
+            aluno.setPersonal(null);
+        }
+    }
+    
+    public Personal getPersonal() {
+        return persoSelect;
+    }
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

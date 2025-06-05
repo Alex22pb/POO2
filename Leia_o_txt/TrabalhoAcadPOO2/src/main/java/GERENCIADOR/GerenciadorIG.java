@@ -39,6 +39,8 @@ public class GerenciadorIG {
     private TelaPesquisarFicha telaPesquisarFicha = null;
     private TelaPagamento telaPagar = null;
     private GerenciadorDominio gerDom;
+    private static Aluno aluno = null;
+    private static Personal personal = null;
 
     private static final GerenciadorIG myInstance = new GerenciadorIG();
 
@@ -86,21 +88,20 @@ public class GerenciadorIG {
         telaInicio.setVisible(false);
     }
     
-    public Aluno abrirTelaCadastroAluno(){
-        abrirJanelaDlg(telaPrincipal, telaAluno, TelaCadastroAluno.class);
-        return telaPesqAluno.getAluno();
+    public void abrirTelaCadastroAluno(){
+        telaAluno = (TelaCadastroAluno) abrirJanelaDlg(telaPrincipal, telaAluno, TelaCadastroAluno.class);
     }
-    
+        
     public void abrirTelaCadastroFicha(){
-        abrirJanelaDlg(telaPrincipal, telaFicha, TelaCadastroFicha.class);
+        telaFicha = (TelaCadastroFicha) abrirJanelaDlg(telaPrincipal, telaFicha, TelaCadastroFicha.class);
     }
     
-    public Personal abrirTelaCadastroPersonal(){
+    public void abrirTelaCadastroPersonal(){
         abrirJanelaDlg(telaPrincipal, telaPersonal, TelaCadastroPersonal.class);
     }
     
     public void abrirTelaPesquisarAluno(){
-        abrirJanelaDlg(telaPrincipal, telaPesqAluno, TelaPesquisarAluno.class);
+        telaPesqAluno = (TelaPesquisarAluno) abrirJanelaDlg(telaPrincipal, telaPesqAluno, TelaPesquisarAluno.class);
     }
        
     public void abrirTelaPesquisarFicha(){
@@ -108,7 +109,7 @@ public class GerenciadorIG {
     }
     
     public void abrirTelaPesquisarPersonal(){
-        abrirJanelaDlg(telaPrincipal, telaPesquisaPersonal, TelaPesquisarPersonal.class);
+        telaPesquisaPersonal = (TelaPesquisarPersonal) abrirJanelaDlg(telaPrincipal, telaPesquisaPersonal, TelaPesquisarPersonal.class);
     }
     
     public void abrirTelaUsuario(){
@@ -127,10 +128,23 @@ public class GerenciadorIG {
         }
         //A ideia e melhorar isso, criar um banco de dados para cadastrar usuários que podem acessar o sistema
     }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

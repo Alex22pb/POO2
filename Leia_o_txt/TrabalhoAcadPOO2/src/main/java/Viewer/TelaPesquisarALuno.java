@@ -202,19 +202,27 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void editarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDadosActionPerformed
-        int linha =tblAluno.getSelectedRow();
-        if(linha >= 0){
+        int linha = tblAluno.getSelectedRow();
+        if (linha >= 0) {
             alunoSelect = (Aluno) tableAluno.getItem(linha);
-            alunoSelect = GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
+            GerenciadorIG.getMyInstance().setAluno(alunoSelect);
+            GerenciadorIG.getMyInstance().abrirTelaCadastroAluno();
             this.setVisible(false);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editarDadosActionPerformed
 
     private void criarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarFichaActionPerformed
-        this.setVisible(false);
-        GerenciadorIG.getMyInstance().abrirTelaCadastroFicha();
+        int linha = tblAluno.getSelectedRow();
+        if(linha >= 0){
+            alunoSelect = (Aluno) tableAluno.getItem(linha);
+            GerenciadorIG.getMyInstance().setAluno(alunoSelect);
+            GerenciadorIG.getMyInstance().abrirTelaCadastroFicha();
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha.", "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_criarFichaActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed

@@ -30,6 +30,7 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     private Map<Exercicios, JCheckBox> checkBoxListaExercicios = new HashMap<>();;
     private List <Exercicios> exerciciosSelecionados = new ArrayList<>();
     private FichaAluno fichaSelect = null;
+    private Aluno alunoSelect = null;
     private List<Exercicios> listaExercicios = new ArrayList<>();
     
     public TelaCadastroFicha(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
@@ -516,12 +517,8 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // Aluno aluno, String tipoFicha, List<Exercicios> exercicios, double porcentagemGordura, double peso, double altura, int minRep, int maxRep, int tempDescanso, 
-        //int serieExerc, Date diaCriacaoFicha, String observacoes
-        
         Aluno alu = (Aluno) comboNomes.getSelectedItem();
-        
-        
+
         String objetivo = (String) comboTipoFicha.getSelectedItem();
         double peso = Double.parseDouble(txtPeso.getText());
         double altura = Double.parseDouble(txtAltura1.getText());
@@ -542,20 +539,15 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         int minRep = (Integer) spinnerMinRep.getValue();
         int maxRep = (Integer) spinnerMaxRep.getValue();
         int tempDescando = Integer.parseInt((String) comboDescanso.getSelectedItem());
-        
-        if(validarCampos()){  
-            
-            if(fichaSelect == null){
-                fichaSelect = GerenciadorIG.getMyInstance().getGerDom().inserirFicha(alu, objetivo, exerciciosSelecionados, porcentoGordura, peso, altura, minRep, 
-                        maxRep, tempDescando, quantSerie, new Date(), obs);
-                JOptionPane.showMessageDialog(this, "Ficha de treino " + fichaSelect.getIdFicha()+ " inserido com sucesso.", "Cadastro de Ficha", JOptionPane.INFORMATION_MESSAGE); 
-            }else{
-                GerenciadorIG.getMyInstance().getGerDom().alterarFicha(fichaSelect, objetivo, exerciciosSelecionados, porcentoGordura, peso, altura, minRep, maxRep, tempDescando, quantSerie, obs);
-                JOptionPane.showMessageDialog(this, "Ficha de treino " + fichaSelect.getIdFicha()+ " inserido com sucesso.", "Cadastro de Ficha", JOptionPane.INFORMATION_MESSAGE); 
-            }
-            
+
+        if (validarCampos()) {
+
+            fichaSelect = GerenciadorIG.getMyInstance().getGerDom().inserirFicha(alu, objetivo, exerciciosSelecionados, porcentoGordura, peso, altura, minRep,
+                    maxRep, tempDescando, quantSerie, new Date(), obs);
+            JOptionPane.showMessageDialog(this, "Ficha de treino " + fichaSelect.getIdFicha() + " inserido com sucesso.", "Cadastro de Ficha", JOptionPane.INFORMATION_MESSAGE);
+
             limparEscolhas();
-        } 
+        }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void comboNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomesActionPerformed
@@ -729,10 +721,10 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
         labelNome.setForeground(Color.black);
         labelPeso.setForeground(Color.black);
     }
-    /**
-     * @param args the command line arguments
-     */
     
+    public void setAlunoSelect(Aluno alunoSelect) {
+        this.alunoSelect = alunoSelect;
+    }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox afundo;

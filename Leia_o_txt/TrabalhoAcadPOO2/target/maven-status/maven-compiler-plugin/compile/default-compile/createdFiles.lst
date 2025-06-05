@@ -16,6 +16,7 @@ Viewer\TelaLogin$3.class
 Viewer\TelaPagamento$3.class
 DAO\ConexaoHibernate.class
 Viewer\TelaCadastroUsuario$2.class
+Viewer\TelaPesquisarPersonal$3.class
 Viewer\TelaCadastroPersonal$4.class
 Viewer\TelaPrincipal$1.class
 Viewer\TelaPrincipal$4.class
@@ -44,6 +45,7 @@ Viewer\TelaCadastroFicha$5.class
 DOMAIN\Personal.class
 Viewer\TelaPesquisarFicha$3.class
 Viewer\TelaPesquisarAluno$2.class
+Viewer\TelaCadastroPersonal$5.class
 GERENCIADOR\TableModelFicha.class
 Viewer\TelaCadastroAluno$4.class
 Viewer\TelaPesquisarPersonal$1.class

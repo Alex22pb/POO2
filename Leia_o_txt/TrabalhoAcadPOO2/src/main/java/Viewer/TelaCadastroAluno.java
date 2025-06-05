@@ -484,13 +484,16 @@ public class TelaCadastroAluno extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         List<Personal> listaPersonal = GerenciadorIG.getMyInstance().getGerDom().listarPersonal(Personal.class);
-        if(listaPersonal.isEmpty()){
+        if (listaPersonal.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Adicione algum personal primeiro", "Cadastro de aluno", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
-        }else{
+        } else {
             FuncaoAjuda.carregarCombo(comboPersonal, listaPersonal);
+            alunoSelect =  GerenciadorIG.getMyInstance().getAluno();
+            if (alunoSelect != null) {
+                preencherCampo(alunoSelect);
+            }
         }
-        
     }//GEN-LAST:event_formComponentShown
 
     private boolean validarCampos(){
@@ -598,9 +601,38 @@ public class TelaCadastroAluno extends javax.swing.JDialog {
         buttonGroupTreino.clearSelection();
         txtCidade.setText("");
         dateCadastro.setDate(null);
-        txtDiaVencimento.setText("");
         txtBairro1.setText("");
         cepFormated.setText("");
+    }
+    
+    private void preencherCampo(Aluno alu){
+        if(alu != null){
+        txtNome.setText(alu.getNome());
+        txtDiaVencimento.setText(String.valueOf(alu.getDiaDoVencimento()));
+        txtEmail.setText(alu.geteMail());
+        txtRua.setText(alu.getEndereco().getRua());
+        date.setDate(alu.getDataNasc());
+        cpfFormated.setText(alu.getCpf());
+        telefoneForm.setText(alu.getTelefone());
+        if(alu.getFoto() != null){
+            ImageIcon imagem = new ImageIcon(alu.getFoto());
+            mostrarFoto(imagem);
+        }
+        if(alu.getSexo() == 'M'){
+            jRadioButtonMasculino.setSelected(true);
+        }else{
+            jRadioButtonFeminino.setSelected(true);
+        }
+        if(alu.isJaTreinou()== true){
+            jRadioButtonTreinoS.setSelected(true);
+        }else{
+            jRadioButtonTreinoN.setSelected(true);
+        }
+        txtCidade.setText(alu.getEndereco().getCidade());
+        dateCadastro.setDate(alu.getDataCadastroAluno());
+        txtBairro1.setText(alu.getEndereco().getBairro());
+        cepFormated.setText(alu.getEndereco().getCep());
+        }
     }
     
     private void colocarFoto(){//COLOCAR IMAGEM
@@ -623,10 +655,10 @@ public class TelaCadastroAluno extends javax.swing.JDialog {
         labelFoto.setText("");
         labelFoto.setIcon(foto);
     }
-    /**
-     * @param args the command line arguments
-     */
-    
+
+    public void setAlunoSelect(Aluno alunoSelect) {
+        this.alunoSelect = alunoSelect;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFoto;
