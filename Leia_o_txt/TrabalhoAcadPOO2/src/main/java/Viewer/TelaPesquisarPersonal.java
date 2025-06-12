@@ -192,8 +192,8 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
             int linha = tblPersonal.getSelectedRow();
             if(linha >= 0){
                 Personal perso = (Personal) tablePersonal.getItem(linha);
-                GerenciadorIG.getMyInstance().getGerDom().excluir(perso);
                 limparPersonalAlunos(perso);
+                GerenciadorIG.getMyInstance().getGerDom().excluir(perso);
                 JOptionPane.showMessageDialog(this, "Personal excluido com sucesso..", "Pesquisar Personal", JOptionPane.INFORMATION_MESSAGE);
 
             }else{
@@ -223,12 +223,7 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
             aluno.setPersonal(null);
         }
     }
-    
-    public Personal getPersonal() {
-        return persoSelect;
-    }
-
-  
+      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscar;

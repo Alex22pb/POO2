@@ -49,6 +49,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuPopUp = new javax.swing.JPopupMenu();
+        atualizar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,6 +69,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuPersonal = new javax.swing.JMenuItem();
         menuFicha = new javax.swing.JMenuItem();
         menuAluno = new javax.swing.JMenuItem();
+
+        atualizar.setText("Atualizar Tabelas");
+        atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarActionPerformed(evt);
+            }
+        });
+        menuPopUp.add(atualizar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -90,6 +100,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 "Nome", "Data de Vencimento"
             }
         ));
+        tblVencimento.setComponentPopupMenu(menuPopUp);
         jScrollPane3.setViewportView(tblVencimento);
 
         tblAniversariantes.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,6 +111,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 "Nome", "Data do Aniversário"
             }
         ));
+        tblAniversariantes.setComponentPopupMenu(menuPopUp);
         jScrollPane1.setViewportView(tblAniversariantes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -171,6 +183,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Cadastros.add(CadastroPersonal);
 
         menuPagamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuPagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pagamento-12.png"))); // NOI18N
         menuPagamento.setText("Cadastrar Pagamento");
         menuPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,6 +293,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CadastrosActionPerformed
 
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+        try{
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            
+            if(listaAluno.size() > 0){
+                tableAniversario.setLista(listaAluno);
+            }else{
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+            }
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar aniversariantes! " + ex, "Tela Principal", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        try{
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            
+            if(listaAluno.size() > 0){
+                tableVencimento.setLista(listaAluno);
+            }else{
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+            }
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar vencimentos! " + ex, "Tela Principal", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_atualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,6 +332,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu Cadastros;
     private javax.swing.JMenu MenuBarPesqusiar;
     private javax.swing.JMenuBar MenuBarraPrinci;
+    private javax.swing.JMenuItem atualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -301,6 +343,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuFicha;
     private javax.swing.JMenuItem menuPagamento;
     private javax.swing.JMenuItem menuPersonal;
+    private javax.swing.JPopupMenu menuPopUp;
     private javax.swing.JTable tblAniversariantes;
     private javax.swing.JTable tblVencimento;
     // End of variables declaration//GEN-END:variables
