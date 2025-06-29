@@ -120,15 +120,6 @@ public class GerenciadorIG {
        abrirJanelaDlg(telaPrincipal, telaPagar, TelaPagamento.class);
     } 
     
-    public boolean verificarUsuarioSenha(String usuario, String senha) {
-        if (usuario.equals("admin") && senha.equals("admin")) {
-            return true;
-        } else {
-            return false;
-        }
-        //A ideia e melhorar isso, criar um banco de dados para cadastrar usuários que podem acessar o sistema
-    }
-
     public Aluno getAluno() {
         return aluno;
     }

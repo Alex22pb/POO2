@@ -5,7 +5,10 @@
 package Viewer;
 
 import DOMAIN.Personal;
+import DOMAIN.Usuario;
 import GERENCIADOR.GerenciadorIG;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,12 +74,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        textSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSenhaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,10 +129,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
-        if(GerenciadorIG.getMyInstance().verificarUsuarioSenha(textFiledNomedeUsu.getText(), textSenha.getText())){
-            genIG.abrirTelaPrincipal();
-        }else{
+        if(!GerenciadorIG.getMyInstance().getGerDom().pesqusiarUsuario(textFiledNomedeUsu.getText(), textSenha.getText())){
             JOptionPane.showMessageDialog(null, "Usuário ou senha errado.", "Tela de Login", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            genIG.abrirTelaPrincipal();
         }
         //verificar se o usuario e senha estão corretos ao sentrar no sistema
     }//GEN-LAST:event_buttonEntrarActionPerformed
@@ -143,10 +140,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private void buttonNovoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoUserActionPerformed
         GerenciadorIG.getMyInstance().abrirTelaUsuario();
     }//GEN-LAST:event_buttonNovoUserActionPerformed
-
-    private void textSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textSenhaActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

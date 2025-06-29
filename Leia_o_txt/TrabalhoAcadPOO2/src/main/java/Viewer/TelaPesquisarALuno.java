@@ -184,9 +184,10 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
-
+        
         try{
-            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            String pesq = jTextField1.getText();
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().pesquisarNomeAluno(pesq, Aluno.class);
             
             if(listaAluno.size() > 0){
                 tableAluno.setLista(listaAluno);

@@ -8,6 +8,7 @@ import DAO.AlunoDAO;
 import DAO.FichaAlunoDAO;
 import DAO.GenericDAO;
 import DAO.PersonalDAO;
+import DAO.UsuarioDAO;
 import DOMAIN.Aluno;
 import DOMAIN.Exercicios;
 import DOMAIN.FichaAluno;
@@ -38,6 +39,7 @@ public class GerenciadorDominio {
     private FichaAlunoDAO fichaAluno_DAO;
     private PersonalDAO personal_DAO;
     private GenericDAO generic_DAO;
+    private UsuarioDAO usuario_DAO;
   
     public GerenciadorDominio(){
         ConexaoHibernate.getSessionFactory();
@@ -46,6 +48,7 @@ public class GerenciadorDominio {
         fichaAluno_DAO = new FichaAlunoDAO();
         personal_DAO = new PersonalDAO();
         generic_DAO = new GenericDAO();
+        usuario_DAO = new UsuarioDAO();
     }   
    
      public Usuario inserirUsuario(String nome, Date dataNasc, String cpf, String telefone, String userName, String senha){
@@ -93,8 +96,16 @@ public class GerenciadorDominio {
         return generic_DAO.listar(classe);
     }
     
+    public List<Aluno> pesquisarNomeAluno(String pesq, Class classe) throws HibernateException{ 
+        return generic_DAO.pesquisarNome(pesq, classe);
+    }
+    
     public List<Personal> listarPersonal(Class classe) throws HibernateException{ 
         return generic_DAO.listar(classe);
+    }
+    
+    public List<Personal> pesquisarNomePersonal(String pesq, Class classe) throws HibernateException{ 
+        return generic_DAO.pesquisarNome(pesq, classe);
     }
     
     public Personal inserirPersonal(String nome, Date dataNasc, String cpf, String telefone, Icon foto, String email, char sexo, String cref){
@@ -177,6 +188,14 @@ public class GerenciadorDominio {
     
     public List<Pagamento> listarPagamento(Class classe) throws HibernateException{ 
         return generic_DAO.listar(classe);
+    }
+    
+    public List<FichaAluno> pesqusiarFichaDoAluno (int idAluno) throws HibernateException{
+        return fichaAluno_DAO.listarFichadoAluno(idAluno);
+    }
+    
+    public boolean pesqusiarUsuario(String user, String senha) throws HibernateException{
+        return usuario_DAO.pesquisarUsuario(user, senha);
     }
     
     public static FichaAluno fichaPredefinida(String tipo, List<Exercicios> listaExerc) {

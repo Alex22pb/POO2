@@ -174,7 +174,8 @@ public class TelaPesquisarPersonal extends javax.swing.JDialog {
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
 
         try{
-            List<Personal> listaPersonal = GerenciadorIG.getMyInstance().getGerDom().listarPersonal(Personal.class);
+            String pesq = jTextField1.getText();
+            List<Personal> listaPersonal = GerenciadorIG.getMyInstance().getGerDom().pesquisarNomePersonal(pesq, Personal.class);
 
             if(listaPersonal.size() > 0){
                 tablePersonal.setLista(listaPersonal);

@@ -187,7 +187,8 @@ public class TelaPesquisarFicha extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+        String pesq = txtNome.getText();
+        List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().pesquisarNomeAluno(pesq, Aluno.class);
         FuncaoAjuda.carregarCombo(comboNome, listaAluno);
     }//GEN-LAST:event_buscarActionPerformed
 
@@ -212,10 +213,10 @@ public class TelaPesquisarFicha extends javax.swing.JDialog {
     }//GEN-LAST:event_criarNovaActionPerformed
 
     private void comboNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomeActionPerformed
-        //Aluno alu = (Aluno) comboNome.getSelectedItem();
+        Aluno alu = (Aluno) comboNome.getSelectedItem();
         //A ideia é listar de acordo com o que o usuário escolher do ComboBox
         try{
-            List<FichaAluno> listaFicha = GerenciadorIG.getMyInstance().getGerDom().listarFicha(FichaAluno.class);
+            List<FichaAluno> listaFicha = GerenciadorIG.getMyInstance().getGerDom().pesqusiarFichaDoAluno(alu.getIdAluno());
 
             if(listaFicha.size() > 0){
                 tableFicha.setLista(listaFicha);

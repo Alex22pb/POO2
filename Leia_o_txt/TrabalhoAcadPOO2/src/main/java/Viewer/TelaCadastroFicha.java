@@ -501,15 +501,9 @@ public class TelaCadastroFicha extends javax.swing.JDialog {
     }//GEN-LAST:event_comboTipoFichaActionPerformed
 
     private void buttonBuscarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarAlunoActionPerformed
-        List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+        String pesq = txtBusca.getText();
+        List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().pesquisarNomeAluno(pesq, Aluno.class);
         FuncaoAjuda.carregarCombo(comboNomes, listaAluno);
-//        try{
-//            String pesq = txtBusca.getText();
-//            
-//        }catch (HibernateException ex){
-//            
-//        }
-        // botão para buscar aluno, porem não funciona pois está sem integrar com o banco, a ideia e colocar um JOptionPane para caso a busca seja flaha
     }//GEN-LAST:event_buttonBuscarAlunoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

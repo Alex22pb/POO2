@@ -4,8 +4,7 @@
  */
 package DAO;
 
-import DOMAIN.Aluno;
-import DOMAIN.FichaAluno;
+import DOMAIN.Usuario;
 import dao.ConexaoHibernate;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -17,39 +16,37 @@ import org.hibernate.Session;
 
 /**
  *
- * Classes que usaram banco de dados
+ * @author User
  */
-public class FichaAlunoDAO extends GenericDAO{
+public class UsuarioDAO extends GenericDAO{
     
-    public List<FichaAluno> listarFichadoAluno(int pesq) throws HibernateException {
-        List list = null;
+        public boolean pesquisarUsuario(String nome, String senha) throws HibernateException {
+      
         Session sessao = null;
-
+        
         try {
             sessao = ConexaoHibernate.getSessionFactory().openSession();
             sessao.beginTransaction();
 
             CriteriaBuilder builder = sessao.getCriteriaBuilder();
-            CriteriaQuery consulta = builder.createQuery(FichaAluno.class);
-            Root tabela = consulta.from(FichaAluno.class);
-
-            // Restrição: onde o id do aluno da ficha seja igual ao id passado
-            Predicate restricoes = builder.equal(tabela.get("aluno").get("IdAluno"), pesq);
-            consulta.where(restricoes);
-
-            list = sessao.createQuery(consulta).getResultList();
-
+            CriteriaQuery consulta = builder.createQuery(Usuario.class);
+            Root tabela = consulta.from(Usuario.class);            
+ 
+            Predicate restricoes = builder.and(builder.equal(tabela.get("userName"), nome), builder.equal(tabela.get("senha"), senha)); 
+            
+            consulta.where(restricoes);  
+            
+            List<Usuario> resultado = sessao.createQuery(consulta).getResultList();
+            
             sessao.getTransaction().commit();
-        } catch (HibernateException ex) {
-            if (sessao != null) {
+            sessao.close();
+            return !resultado.isEmpty();
+        } catch ( HibernateException ex) {
+            if ( sessao != null) {
                 sessao.getTransaction().rollback();
-            }
-            throw new HibernateException(ex);
-        } finally {
-            if (sessao != null) {
                 sessao.close();
             }
-        }
-        return list;
+            throw new HibernateException(ex);
+        }            
     }
 }

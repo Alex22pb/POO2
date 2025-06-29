@@ -8,7 +8,9 @@ import DOMAIN.Usuario;
 import GERENCIADOR.FuncaoAjuda;
 import GERENCIADOR.GerenciadorIG;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
@@ -19,6 +21,7 @@ import javax.swing.JOptionPane;
 public class TelaCadastroUsuario extends javax.swing.JDialog {
 
     private Usuario user;
+    private List<Usuario> listaUser = new ArrayList<>();
     
     public TelaCadastroUsuario(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
@@ -210,13 +213,17 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         String telefone = telefoneFormated.getText();
         String senha = txtSenha.getText();
 
-        if (validarCampos()) {
+        if (GerenciadorIG.getMyInstance().getGerDom().pesqusiarUsuario(userName, senha)) {
+            JOptionPane.showMessageDialog(null, "E-mail ou username já cadastrado.", "Tela de Cadastro Usuário", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (validarCampos()) {
 
-            user = GerenciadorIG.getMyInstance().getGerDom().inserirUsuario(nome, dataNascimento, cpf, telefone, userName, senha);
+                user = GerenciadorIG.getMyInstance().getGerDom().inserirUsuario(nome, dataNascimento, cpf, telefone, userName, senha);
 
-            JOptionPane.showMessageDialog(this, "Usuário " + user.getIdUsuario()+ " inserido com sucesso.", "Cadastro de Usuário", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Usuário " + user.getIdUsuario() + " inserido com sucesso.", "Cadastro de Usuário", JOptionPane.INFORMATION_MESSAGE);
 
-            limparEscolha();
+                limparEscolha();
+            }
         }
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 

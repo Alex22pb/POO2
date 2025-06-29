@@ -253,7 +253,8 @@ public class TelaPagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonBuscarNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarNomesActionPerformed
-        List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+        String pesq = txtBuscaNome.getText();
+        List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().pesquisarNomeAluno(pesq, Aluno.class);
         FuncaoAjuda.carregarCombo(comboNomes, listaAluno);
     }//GEN-LAST:event_buttonBuscarNomesActionPerformed
 
