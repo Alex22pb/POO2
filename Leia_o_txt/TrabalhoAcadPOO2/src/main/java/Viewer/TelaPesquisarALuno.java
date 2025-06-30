@@ -5,6 +5,7 @@
 package Viewer;
 
 import DOMAIN.Aluno;
+import GERENCIADOR.GerenciadorDominio;
 import GERENCIADOR.GerenciadorIG;
 import GERENCIADOR.TableModelAluno;
 import java.util.List;
@@ -49,6 +50,7 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
         editarDados = new javax.swing.JButton();
         excluir = new javax.swing.JButton();
         criarFicha = new javax.swing.JButton();
+        relatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -120,6 +122,13 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
             }
         });
 
+        relatorio.setText("Relatório");
+        relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,13 +146,15 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(40, 40, 40)
                 .addComponent(editarDados)
-                .addGap(78, 78, 78)
+                .addGap(76, 76, 76)
                 .addComponent(criarFicha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addComponent(excluir)
-                .addGap(99, 99, 99))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(relatorio)
+                .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +170,8 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editarDados)
                     .addComponent(excluir)
-                    .addComponent(criarFicha))
+                    .addComponent(criarFicha)
+                    .addComponent(relatorio))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -198,8 +210,6 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
         }catch (HibernateException ex){
             JOptionPane.showMessageDialog(this, "ERRO ao pesquisar aluno! " + ex, "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
         }
-        // Ao ser integrado o sistema com banco, ele ira buscar os alunos com o nome que a pessoa digitou e listar na JTable
-        // e ao clicar no botão selecionar, jogar os dados da pessoa que ele quer para o cadastro de ficha.
     }//GEN-LAST:event_buttonBuscarActionPerformed
 
     private void editarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDadosActionPerformed
@@ -242,6 +252,18 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_excluirActionPerformed
 
+    private void relatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioActionPerformed
+        try{
+            String pesq = jTextField1.getText();
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().pesquisarNomeAluno(pesq, Aluno.class);
+            
+            GerenciadorIG.getMyInstance().getGerenciadorRelatorios().relComLista(listaAluno, "relatorioAlunos.jasper");
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar aluno! " + ex, "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_relatorioActionPerformed
+
     public Aluno getAluno() {
         return alunoSelect;
     }
@@ -256,6 +278,7 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton relatorio;
     private javax.swing.JTable tblAluno;
     // End of variables declaration//GEN-END:variables
 }

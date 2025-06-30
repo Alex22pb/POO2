@@ -25,6 +25,8 @@ Viewer\TelaCadastroFicha$5.class
 Viewer\TelaPesquisarFicha$3.class
 Viewer\TelaCadastroPersonal$5.class
 GERENCIADOR\TableModelFicha.class
+GERENCIADOR\GerenciadorRelatorios.class
+Viewer\TelaPesquisarAluno$5.class
 GERENCIADOR\TableModelPagamento.class
 DAO\GenericDAO.class
 Viewer\TelaCadastroFicha$6.class

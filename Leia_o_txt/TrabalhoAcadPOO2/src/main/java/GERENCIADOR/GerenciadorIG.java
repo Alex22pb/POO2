@@ -39,6 +39,7 @@ public class GerenciadorIG {
     private TelaPesquisarFicha telaPesquisarFicha = null;
     private TelaPagamento telaPagar = null;
     private GerenciadorDominio gerDom;
+    private GerenciadorRelatorios gerRelatorio;
     private static Aluno aluno = null;
     private static Personal personal = null;
 
@@ -47,6 +48,7 @@ public class GerenciadorIG {
      private GerenciadorIG() {        
         try {
             gerDom = new GerenciadorDominio();
+            gerRelatorio = new GerenciadorRelatorios();
         } catch (java.lang.ExceptionInInitializerError | HibernateException ex) {
             JOptionPane.showMessageDialog(null, ex, "Erro ao inicializar.", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
@@ -71,6 +73,10 @@ public class GerenciadorIG {
     
     public GerenciadorDominio getGerDom() {
         return gerDom;
+    }
+    
+    public GerenciadorRelatorios getGerenciadorRelatorios() {
+        return gerRelatorio;
     }
     
     public void abrirTelaLogin(){

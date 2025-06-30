@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72d6ecc4-8c39-464e-a1b0-5435a87916ca">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id_pagamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id_pagamento]]></fieldDescription>
+	</field>
+	<field name="diaPagamento" class="java.util.Date">
+		<fieldDescription><![CDATA[diaPagamento]]></fieldDescription>
+	</field>
+	<field name="valorPagamento" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorPagamento]]></fieldDescription>
+	</field>
+	<field name="aluno" class="DOMAIN.Aluno">
+		<fieldDescription><![CDATA[aluno]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="100" height="20" uuid="855498ae-9ef1-45b2-8887-8080a8d4c102"/>
+				<text><![CDATA[Id Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="100" height="20" uuid="7032682e-c67c-4888-b750-2f1c42718a4f"/>
+				<text><![CDATA[Valor Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="f8352d99-1aed-4cae-bcad-a11d8761ea30"/>
+				<text><![CDATA[Dia Pagamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ed8ed6b0-e641-4d1e-a1c8-f3037351bb69"/>
+				<textFieldExpression><![CDATA[$F{id_pagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="20" uuid="4433338f-5905-401e-9a62-a6f85ae348b4"/>
+				<textFieldExpression><![CDATA[$F{valorPagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="827e59cd-11cf-4039-9d07-95c2e0ca561c"/>
+				<textFieldExpression><![CDATA[$F{diaPagamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
