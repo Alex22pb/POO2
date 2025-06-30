@@ -49,4 +49,34 @@ public class UsuarioDAO extends GenericDAO{
             throw new HibernateException(ex);
         }            
     }
+        
+    public boolean verificarUsername(String nome) throws HibernateException {
+      
+        Session sessao = null;
+        
+        try {
+            sessao = ConexaoHibernate.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            CriteriaBuilder builder = sessao.getCriteriaBuilder();
+            CriteriaQuery consulta = builder.createQuery(Usuario.class);
+            Root tabela = consulta.from(Usuario.class);            
+ 
+            Predicate restricoes = builder.equal(tabela.get("userName"), nome);
+            
+            consulta.where(restricoes);  
+            
+            List<Usuario> resultado = sessao.createQuery(consulta).getResultList();
+            
+            sessao.getTransaction().commit();
+            sessao.close();
+            return !resultado.isEmpty();
+        } catch ( HibernateException ex) {
+            if ( sessao != null) {
+                sessao.getTransaction().rollback();
+                sessao.close();
+            }
+            throw new HibernateException(ex);
+        }            
+    }
 }

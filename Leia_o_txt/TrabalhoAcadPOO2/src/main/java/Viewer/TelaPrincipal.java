@@ -69,6 +69,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuPersonal = new javax.swing.JMenuItem();
         menuFicha = new javax.swing.JMenuItem();
         menuAluno = new javax.swing.JMenuItem();
+        menuAtt = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         atualizar.setText("Atualizar Tabelas");
         atualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +230,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuBarraPrinci.add(MenuBarPesqusiar);
 
+        menuAtt.setText("Atualizar");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setText("Atualizar Página");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuAtt.add(jMenuItem1);
+
+        MenuBarraPrinci.add(menuAtt);
+
         setJMenuBar(MenuBarraPrinci);
 
         pack();
@@ -259,12 +274,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         try{
-            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().aniversariantesDoMes(Aluno.class);
             
             if(listaAluno.size() > 0){
                 tableAniversario.setLista(listaAluno);
             }else{
-                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+                JOptionPane.showMessageDialog(this, "Nenhum aniversariantes para o mês atual.");
             }
             
         }catch (HibernateException ex){
@@ -272,12 +287,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         try{
-            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarInadimplentes();
             
             if(listaAluno.size() > 0){
                 tableVencimento.setLista(listaAluno);
             }else{
-                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+                JOptionPane.showMessageDialog(this, "Nenhum registro de vencimento encontrado.");
             }
             
         }catch (HibernateException ex){
@@ -295,11 +310,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         try{
-            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().aniversariantesDoMes(Aluno.class);
             
             if(listaAluno.size() > 0){
                 tableAniversario.setLista(listaAluno);
             }else{
+                tableAniversario.setLista(listaAluno);
                 JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
             }
             
@@ -308,11 +324,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
         try{
-            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarAlunos(Aluno.class);
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().listarInadimplentes();
             
             if(listaAluno.size() > 0){
                 tableVencimento.setLista(listaAluno);
             }else{
+                tableVencimento.setLista(listaAluno);
                 JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
             }
             
@@ -320,6 +337,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ERRO ao pesquisar vencimentos! " + ex, "Tela Principal", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_atualizarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        atualizarActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,11 +356,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem atualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelFoto;
     private javax.swing.JMenuItem menuAluno;
+    private javax.swing.JMenu menuAtt;
     private javax.swing.JMenuItem menuFicha;
     private javax.swing.JMenuItem menuPagamento;
     private javax.swing.JMenuItem menuPersonal;

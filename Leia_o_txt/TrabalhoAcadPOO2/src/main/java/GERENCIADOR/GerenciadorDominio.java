@@ -104,6 +104,10 @@ public class GerenciadorDominio {
         return generic_DAO.listar(classe);
     }
     
+    public List<Aluno> aniversariantesDoMes(Class classe) throws HibernateException{ 
+        return aluno_DAO.buscarAniversariantesDoMesAtual(classe);
+    }
+    
     public List<Personal> pesquisarNomePersonal(String pesq, Class classe) throws HibernateException{ 
         return generic_DAO.pesquisarNome(pesq, classe);
     }
@@ -177,7 +181,11 @@ public class GerenciadorDominio {
         generic_DAO.excluir(obj);
     }
     
-     public Pagamento inserirPagamento(Aluno alu, double valor, Date data){
+    public List<Aluno> listarInadimplentes() throws HibernateException{ 
+        return aluno_DAO.listarAlunosInadimplentesDoMes();
+    }
+    
+    public Pagamento inserirPagamento(Aluno alu, double valor, Date data){
         
         Pagamento pagar = new Pagamento (alu, valor, data);
         
@@ -186,16 +194,20 @@ public class GerenciadorDominio {
         return pagar;
     }
     
-    public List<Pagamento> listarPagamento(Class classe) throws HibernateException{ 
-        return generic_DAO.listar(classe);
+    public List<FichaAluno> pesquisarporIdFicha (int idAluno, Class classe) throws HibernateException{
+        return generic_DAO.listarPorId(idAluno, classe);
     }
     
-    public List<FichaAluno> pesqusiarFichaDoAluno (int idAluno) throws HibernateException{
-        return fichaAluno_DAO.listarFichadoAluno(idAluno);
+    public List<Pagamento> pesquisarporIdPagamentos (int idAluno, Class classe) throws HibernateException{
+        return generic_DAO.listarPorId(idAluno, classe);
     }
     
     public boolean pesqusiarUsuario(String user, String senha) throws HibernateException{
         return usuario_DAO.pesquisarUsuario(user, senha);
+    }
+    
+    public boolean verificarUser(String user) throws HibernateException{
+        return usuario_DAO.verificarUsername(user);
     }
     
     public static FichaAluno fichaPredefinida(String tipo, List<Exercicios> listaExerc) {

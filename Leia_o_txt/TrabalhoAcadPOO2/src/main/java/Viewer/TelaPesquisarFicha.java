@@ -210,18 +210,21 @@ public class TelaPesquisarFicha extends javax.swing.JDialog {
 
     private void criarNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarNovaActionPerformed
         // TODO add your handling code here:
+        
+        GerenciadorIG.getMyInstance().abrirTelaCadastroFicha();
+        this.setVisible(false);
     }//GEN-LAST:event_criarNovaActionPerformed
 
     private void comboNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNomeActionPerformed
         Aluno alu = (Aluno) comboNome.getSelectedItem();
         //A ideia é listar de acordo com o que o usuário escolher do ComboBox
         try{
-            List<FichaAluno> listaFicha = GerenciadorIG.getMyInstance().getGerDom().pesqusiarFichaDoAluno(alu.getIdAluno());
+            List<FichaAluno> listaFicha = GerenciadorIG.getMyInstance().getGerDom().pesquisarporIdFicha(alu.getIdAluno(), FichaAluno.class);
 
             if(listaFicha.size() > 0){
                 tableFicha.setLista(listaFicha);
             }else{
-                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado para " + alu.getNome() + ".");
             }
 
         }catch (HibernateException ex){

@@ -249,7 +249,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         pagar = GerenciadorIG.getMyInstance().getGerDom().inserirPagamento(alu, valor, date);
         JOptionPane.showMessageDialog(this, "Pagamento " + pagar.getId_pagamento() + " inserido com sucesso.", "Cadastro de Pagamento", JOptionPane.INFORMATION_MESSAGE);
         
-        carregarPagamento();
+        carregarPagamento(alu);
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonBuscarNomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarNomesActionPerformed
@@ -265,7 +265,7 @@ public class TelaPagamento extends javax.swing.JDialog {
         
         verificarValor();
         
-        carregarPagamento();
+        carregarPagamento(alu);
     }//GEN-LAST:event_comboNomesActionPerformed
 
     private void verificarValor(){
@@ -280,9 +280,9 @@ public class TelaPagamento extends javax.swing.JDialog {
         }   
     }
     
-    private void carregarPagamento(){
+    private void carregarPagamento(Aluno alu){
         try {
-            List<Pagamento> listaPagamento = GerenciadorIG.getMyInstance().getGerDom().listarPagamento(Pagamento.class);
+            List<Pagamento> listaPagamento = GerenciadorIG.getMyInstance().getGerDom().pesquisarporIdPagamentos(alu.getIdAluno(), Pagamento.class);
 
             if (listaPagamento.size() > 0) {
                 tablePagamento.setLista(listaPagamento);

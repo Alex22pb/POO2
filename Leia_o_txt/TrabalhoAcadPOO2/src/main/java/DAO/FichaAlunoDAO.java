@@ -21,35 +21,35 @@ import org.hibernate.Session;
  */
 public class FichaAlunoDAO extends GenericDAO{
     
-    public List<FichaAluno> listarFichadoAluno(int pesq) throws HibernateException {
-        List list = null;
-        Session sessao = null;
-
-        try {
-            sessao = ConexaoHibernate.getSessionFactory().openSession();
-            sessao.beginTransaction();
-
-            CriteriaBuilder builder = sessao.getCriteriaBuilder();
-            CriteriaQuery consulta = builder.createQuery(FichaAluno.class);
-            Root tabela = consulta.from(FichaAluno.class);
-
-            // Restrição: onde o id do aluno da ficha seja igual ao id passado
-            Predicate restricoes = builder.equal(tabela.get("aluno").get("IdAluno"), pesq);
-            consulta.where(restricoes);
-
-            list = sessao.createQuery(consulta).getResultList();
-
-            sessao.getTransaction().commit();
-        } catch (HibernateException ex) {
-            if (sessao != null) {
-                sessao.getTransaction().rollback();
-            }
-            throw new HibernateException(ex);
-        } finally {
-            if (sessao != null) {
-                sessao.close();
-            }
-        }
-        return list;
-    }
+//    public List<FichaAluno> listarFichadoAluno(int pesq) throws HibernateException {
+//        List list = null;
+//        Session sessao = null;
+//
+//        try {
+//            sessao = ConexaoHibernate.getSessionFactory().openSession();
+//            sessao.beginTransaction();
+//
+//            CriteriaBuilder builder = sessao.getCriteriaBuilder();
+//            CriteriaQuery consulta = builder.createQuery(FichaAluno.class);
+//            Root tabela = consulta.from(FichaAluno.class);
+//
+//            // Restrição: onde o id do aluno da ficha seja igual ao id passado
+//            Predicate restricoes = builder.equal(tabela.get("aluno").get("IdAluno"), pesq);
+//            consulta.where(restricoes);
+//
+//            list = sessao.createQuery(consulta).getResultList();
+//
+//            sessao.getTransaction().commit();
+//        } catch (HibernateException ex) {
+//            if (sessao != null) {
+//                sessao.getTransaction().rollback();
+//            }
+//            throw new HibernateException(ex);
+//        } finally {
+//            if (sessao != null) {
+//                sessao.close();
+//            }
+//        }
+//        return list;
+//    }
 }

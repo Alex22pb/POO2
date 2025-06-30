@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class TelaCadastroUsuario extends javax.swing.JDialog {
 
     private Usuario user;
-    private List<Usuario> listaUser = new ArrayList<>();
     
     public TelaCadastroUsuario(java.awt.Frame parent, boolean modal, GerenciadorIG newGerenIG) {
         super(parent, modal);
@@ -213,7 +212,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         String telefone = telefoneFormated.getText();
         String senha = txtSenha.getText();
 
-        if (GerenciadorIG.getMyInstance().getGerDom().pesqusiarUsuario(userName, senha)) {
+        if (GerenciadorIG.getMyInstance().getGerDom().verificarUser(userName)) {
             JOptionPane.showMessageDialog(null, "E-mail ou username já cadastrado.", "Tela de Cadastro Usuário", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (validarCampos()) {

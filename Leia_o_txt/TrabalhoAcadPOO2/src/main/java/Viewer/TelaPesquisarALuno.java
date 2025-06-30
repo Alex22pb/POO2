@@ -192,7 +192,7 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
             if(listaAluno.size() > 0){
                 tableAluno.setLista(listaAluno);
             }else{
-                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado.");
+                JOptionPane.showMessageDialog(this, "Nenhum registro encontrado para.");
             }
             
         }catch (HibernateException ex){
@@ -245,7 +245,6 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
     public Aluno getAluno() {
         return alunoSelect;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscar;
