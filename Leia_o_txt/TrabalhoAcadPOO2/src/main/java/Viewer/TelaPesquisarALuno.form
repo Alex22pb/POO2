@@ -215,6 +215,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="relatorio">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/icons8-novo-documento-12.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
           </Properties>
           <Events>

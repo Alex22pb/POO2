@@ -65,15 +65,14 @@ public class AlunoDAO extends GenericDAO {
             String sql = """
                 SELECT *
                 FROM aluno a
-                WHERE NOT EXISTS (
+                WHERE CURRENT_DATE >= DATE_TRUNC('month', CURRENT_DATE) + (a.diadovencimento - 1) * INTERVAL '1 day'
+                  AND NOT EXISTS (
                     SELECT 1
                     FROM pagamento p
                     WHERE p.id_aluno = a.idaluno
                       AND EXTRACT(MONTH FROM p.diapagamento) = EXTRACT(MONTH FROM CURRENT_DATE)
                       AND EXTRACT(YEAR FROM p.diapagamento) = EXTRACT(YEAR FROM CURRENT_DATE)
-                      AND EXTRACT(DAY FROM p.diapagamento) = a.diadovencimento
-                )
-                AND a.diadovencimento <= EXTRACT(DAY FROM CURRENT_DATE)
+                  );
             """;
 
             lista = sessao.createNativeQuery(sql, Aluno.class).getResultList();

@@ -122,6 +122,7 @@ public class TelaPesquisarAluno extends javax.swing.JDialog {
             }
         });
 
+        relatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-novo-documento-12.png"))); // NOI18N
         relatorio.setText("Relatório");
         relatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

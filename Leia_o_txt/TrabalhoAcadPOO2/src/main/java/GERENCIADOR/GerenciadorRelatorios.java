@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -28,11 +29,14 @@ public class GerenciadorRelatorios {
 
     public void relComLista(List lista, String nome) {
         try {
+            
             // PASSO 1 - Caminho do relatório
-            InputStream rel = getClass().getResourceAsStream("../relatorios/" + nome);
+            // Compilar o .jrxml para .jasper
+            //JasperCompileManager.compileReportToFile("src/main/resources/relatorios/relatorioAlunos.jrxml");
 
+            InputStream rel = getClass().getResourceAsStream("../relatorios/" + nome);
             // COMPILAR
-            // JasperReport rel = JasperCompileManager.compileReport(relArq);
+            //JasperReport rel = JasperCompileManager.compileReport(relArq);
             // PASSO 2 - Criar parâmetros de Pesquisa 
             Map parametros = new HashMap();
 
@@ -60,7 +64,7 @@ public class GerenciadorRelatorios {
             }
 
         } catch (JRException erro) {
-            JOptionPane.showMessageDialog(null, "ERRO ao abrir relatório de clientes. " + erro.getMessage());
+            JOptionPane.showMessageDialog(null, "ERRO ao abrir relatório de alunos. " + erro.getMessage());
         }
     }
 }
