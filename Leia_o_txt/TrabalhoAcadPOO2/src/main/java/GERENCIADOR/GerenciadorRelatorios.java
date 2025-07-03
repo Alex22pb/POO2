@@ -32,14 +32,16 @@ public class GerenciadorRelatorios {
             
             // PASSO 1 - Caminho do relatório
             // Compilar o .jrxml para .jasper
-            //JasperCompileManager.compileReportToFile("src/main/resources/relatorios/relatorioAlunos.jrxml");
-
+            
             InputStream rel = getClass().getResourceAsStream("../relatorios/" + nome);
             // COMPILAR
             //JasperReport rel = JasperCompileManager.compileReport(relArq);
             // PASSO 2 - Criar parâmetros de Pesquisa 
             Map parametros = new HashMap();
-
+            
+            String subreportDir =  getClass().getResource("/relatorios/").getPath();
+            parametros.put("SUBREPORT_DIR", subreportDir);
+            
             // PASSO 3 - Carregar o relatório com os dados
             JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(lista);
             JasperPrint print;
