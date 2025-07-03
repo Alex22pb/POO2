@@ -100,9 +100,9 @@
 				<textFieldExpression><![CDATA[$F{dataCadastroAluno}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="20" width="555" height="57" uuid="6a8e2d6d-954c-40a7-a08d-7ccaa43042f2"/>
+				<reportElement x="0" y="20" width="555" height="57" uuid="aad31f98-cfa5-446d-97f6-f487be9a3939"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource( $F{pagamentos} )]]></dataSourceExpression>
-				<subreportExpression><![CDATA["relatorios//relatorioPagamentos.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioPagamentos.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
