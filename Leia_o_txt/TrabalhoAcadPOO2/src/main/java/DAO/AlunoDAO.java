@@ -93,4 +93,35 @@ public class AlunoDAO extends GenericDAO {
         return lista;
     }
 
+    public List<Aluno> listarTodosAlunosComPagamentos(Class classe) throws HibernateException {
+        Session sessao = null;
+        List<Aluno> lista = null;
+
+        try {
+            sessao = ConexaoHibernate.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            String sql = """
+            SELECT DISTINCT a
+            FROM Aluno a
+            LEFT JOIN FETCH a.pagamentos p
+        """;
+
+            lista = sessao.createQuery(sql, classe).getResultList();
+
+            sessao.getTransaction().commit();
+        } catch (HibernateException ex) {
+            if (sessao != null) {
+                sessao.getTransaction().rollback();
+            }
+            throw new HibernateException("Erro ao buscar alunos e pagamentos", ex);
+        } finally {
+            if (sessao != null) {
+                sessao.close();
+            }
+        }
+
+        return lista;
+    }
+
 }

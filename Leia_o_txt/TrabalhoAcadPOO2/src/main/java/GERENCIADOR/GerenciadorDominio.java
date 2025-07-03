@@ -96,6 +96,10 @@ public class GerenciadorDominio {
         return generic_DAO.listar(classe);
     }
     
+    public List<Aluno> caregarRelatorio(Class classe) throws HibernateException{ 
+        return aluno_DAO.listarTodosAlunosComPagamentos(classe);
+    }
+    
     public List<Aluno> pesquisarNomeAluno(String pesq, Class classe) throws HibernateException{ 
         return generic_DAO.pesquisarNome(pesq, classe);
     }

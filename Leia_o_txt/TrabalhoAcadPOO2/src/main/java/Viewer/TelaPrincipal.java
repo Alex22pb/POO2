@@ -71,6 +71,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuAluno = new javax.swing.JMenuItem();
         menuAtt = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         atualizar.setText("Atualizar Tabelas");
         atualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -230,9 +231,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuBarraPrinci.add(MenuBarPesqusiar);
 
-        menuAtt.setText("Atualizar");
+        menuAtt.setText("Opções");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-atualizar-12.png"))); // NOI18N
         jMenuItem1.setText("Atualizar Página");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,6 +242,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuAtt.add(jMenuItem1);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-novo-documento-12.png"))); // NOI18N
+        jMenuItem2.setText("Relatório");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuAtt.add(jMenuItem2);
 
         MenuBarraPrinci.add(menuAtt);
 
@@ -342,6 +354,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         atualizarActionPerformed(evt);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try{
+            List<Aluno> listaAluno = GerenciadorIG.getMyInstance().getGerDom().caregarRelatorio(Aluno.class);
+            
+            GerenciadorIG.getMyInstance().getGerenciadorRelatorios().relComLista(listaAluno, "relatorioAlunos.jasper");
+            
+        }catch (HibernateException ex){
+            JOptionPane.showMessageDialog(this, "ERRO ao pesquisar aluno! " + ex, "Pesquisar Aluno", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -357,6 +380,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
